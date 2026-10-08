@@ -1,0 +1,98 @@
+.capability-section--gateway {
+  min-height: 0;
+  padding-block: 104px 112px;
+}
+
+.capability-section--gateway .capability-intro {
+  grid-template-columns: minmax(0, 1fr) 400px;
+}
+
+.capability-section--gateway .capability-intro h2 {
+  max-width: 760px;
+  font-size: 64px;
+  line-height: .88 !important;
+}
+
+.capability-section--gateway .capability-intro h2::after { display: none; }
+
+.capability-gateway__side {
+  align-self: end;
+}
+
+.capability-gateway__side p {
+  max-width: 38ch;
+  margin-bottom: 24px;
+}
+
+.capability-gateway__disciplines {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.capability-gateway__disciplines span {
+  min-height: 112px;
+  padding: 18px 14px;
+  display: flex;
+  align-items: flex-end;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--label);
+  font-size: 11px;
+  letter-spacing: .05em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.capability-gateway__disciplines span:nth-child(2),
+.capability-gateway__disciplines span:nth-child(5) { background: var(--lilac); }
+.capability-gateway__disciplines span:nth-child(3) { background: var(--clay); }
+.capability-gateway__disciplines span:nth-child(6) { color: var(--paper-light); background: var(--blue); }
+
+.capability-gateway__media {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1.3fr .85fr .85fr;
+  height: 430px;
+  gap: 16px;
+}
+
+.capability-gateway__media a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.capability-gateway__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--motion-ease);
+}
+
+.capability-gateway__media a:first-child img { object-position: 62% center; }
+.capability-gateway__media a:nth-child(3) img { object-position: top center; }
+.capability-gateway__media a:hover img { transform: scale(1.015); }
+
+.capability-gateway__media span {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 14px 16px;
+  color: var(--paper-light);
+  background: linear-gradient(transparent, rgba(0, 0, 0, .76));
+  font-family: var(--label);
+  font-size: 11px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 800px) {
+  .capability-section--gateway .capability-intro { grid-template-columns: 1fr; }
+  .capability-section--gateway .capability-intro h2 { font-size: clamp(40px, 11vw, 58px); }
+  .capability-gateway__disciplines { grid-template-columns: repeat(2, 1fr); }
+  .capability-gateway__media { height: auto; grid-template-columns: 1fr; }
+  .capability-gateway__media a { min-height: 300px; }
+}
