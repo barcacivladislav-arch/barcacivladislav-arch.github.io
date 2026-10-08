@@ -1,0 +1,9 @@
+/* Project colour only; layout and controls live in project.css/components.css. */
+.cdl-premium {
+  --case-accent: #d8ff36;
+  --case-dark: #11110f;
+  --case-panel: #22221e;
+  --project-accent: var(--case-accent);
+  --project-dark: var(--case-dark);
+  --project-surface: var(--case-panel);
+}

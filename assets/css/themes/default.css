@@ -1,0 +1,6 @@
+/* Default project theme: shell tokens remain unchanged. */
+:root {
+  --project-accent: var(--color-action);
+  --project-dark: var(--color-text);
+  --project-surface: var(--color-surface);
+}

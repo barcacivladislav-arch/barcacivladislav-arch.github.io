@@ -1,0 +1,11 @@
+/* Project colour only; layout and controls live in project.css/components.css. */
+.snus-case {
+  --snus-bg: #0d0e12;
+  --snus-panel: #15171d;
+  --snus-line: #30323a;
+  --snus-text: #f2eee7;
+  --snus-muted: #c7c3bd;
+  --project-accent: #e8cf7d;
+  --project-dark: var(--snus-bg);
+  --project-surface: var(--snus-panel);
+}

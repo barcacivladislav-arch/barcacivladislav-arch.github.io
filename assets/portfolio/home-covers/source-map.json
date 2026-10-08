@@ -1,0 +1,308 @@
+[
+  {
+    "slug": "herbaris",
+    "node": "1:95",
+    "hash": "ed9e46ccbbf846193388c4c4eca4e4580ec31d66",
+    "file": "herbaris.jpg",
+    "width": 2400,
+    "height": 2400,
+    "mode": "FILL",
+    "transform": {
+      "m00": 1,
+      "m01": 0,
+      "m02": 0,
+      "m10": 0,
+      "m11": 1,
+      "m12": 0
+    },
+    "destination": "assets/portfolio/home-covers/herbaris.webp"
+  },
+  {
+    "slug": "cdl",
+    "node": "1:97",
+    "hash": "f1d4f20ee53f0f3ee208becff15c797d9be14ce7",
+    "file": "cdl.png",
+    "width": 4096,
+    "height": 1819,
+    "mode": "FILL",
+    "transform": {
+      "m00": 0.33657482266426086,
+      "m01": 0,
+      "m02": 0.505142867565155,
+      "m10": 0,
+      "m11": 1,
+      "m12": 0
+    },
+    "destination": "assets/portfolio/home-covers/cdl.webp"
+  },
+  {
+    "slug": "klintensiv",
+    "node": "1:99",
+    "hash": "2c20d0dc06a979da5e7a7f6f43ee32b8d51d1c1d",
+    "file": "klintensiv.jpg",
+    "width": 2333,
+    "height": 1555,
+    "mode": "FILL",
+    "transform": {
+      "m00": 1,
+      "m01": 0,
+      "m02": 0,
+      "m10": 0,
+      "m11": 1,
+      "m12": 0
+    },
+    "destination": "assets/portfolio/home-covers/klintensiv.webp"
+  },
+  {
+    "slug": "elite-homes",
+    "node": "1:101",
+    "hash": "00c4390a6eb752c3043bee735d01b92e47c567a1",
+    "file": "elite-homes.jpg",
+    "width": 1200,
+    "height": 900,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 1,
+      "m01": 0,
+      "m02": 0,
+      "m10": 0,
+      "m11": 0.9166528582572937,
+      "m12": 0.041673578321933746
+    },
+    "destination": "assets/portfolio/home-covers/elite-homes.webp"
+  },
+  {
+    "slug": "capodopera",
+    "node": "1:103",
+    "hash": "60685bac7dc2cd0138951d862161529d21441151",
+    "file": "capodopera.jpg",
+    "width": 2732,
+    "height": 4096,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 1,
+      "m01": 0,
+      "m02": 0,
+      "m10": 0,
+      "m11": 0.45855021476745605,
+      "m12": 0.37820056080818176
+    },
+    "destination": "assets/portfolio/home-covers/capodopera.webp"
+  },
+  {
+    "slug": "intergasses",
+    "node": "1:105",
+    "hash": "33e8e8db770d990f277c76aac0b018a6e8c08482",
+    "file": "intergasses.png",
+    "width": 3780,
+    "height": 1668,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 0.4708974063396454,
+      "m01": 0,
+      "m02": 0.5293446779251099,
+      "m10": 0,
+      "m11": 0.7336487770080566,
+      "m12": 0.2670994699001312
+    },
+    "destination": "assets/portfolio/home-covers/intergasses.webp"
+  },
+  {
+    "slug": "snus",
+    "node": "1:277",
+    "hash": "eae77efbb884a10d1a1279ba95d904daabb417de",
+    "file": "snus.png",
+    "width": 3370,
+    "height": 3360,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 0.7046353816986084,
+      "m01": 0,
+      "m02": 0.147682324051857,
+      "m10": 0,
+      "m11": 0.4271077811717987,
+      "m12": 0.4331342577934265
+    },
+    "destination": "assets/portfolio/home-covers/snus.webp"
+  },
+  {
+    "slug": "coreleaf",
+    "node": "1:287",
+    "hash": "00c1fc0629279281866e0f1602c49778d1d0941e",
+    "file": "ark-development.png",
+    "width": 4000,
+    "height": 3000,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 0.7541865110397339,
+      "m01": 0,
+      "m02": 0.12290672957897186,
+      "m10": 0,
+      "m11": 0.6703780889511108,
+      "m12": 0.13887883722782135
+    },
+    "destination": "assets/portfolio/home-covers/coreleaf.webp"
+  },
+  {
+    "slug": "medicam3",
+    "node": "1:297",
+    "hash": "fc4bf8495a975c93ba9ae54a5fcf45f8e3092f95",
+    "file": "coreleaf.png",
+    "width": 4096,
+    "height": 4096,
+    "mode": "FILL",
+    "transform": {
+      "m00": 0.8221811056137085,
+      "m01": 0,
+      "m02": 0.10267892479896545,
+      "m10": 0,
+      "m11": 0.7230217456817627,
+      "m12": 0.17426066100597382
+    },
+    "destination": "assets/portfolio/home-covers/medicam3.webp"
+  },
+  {
+    "slug": "ark-development",
+    "node": "1:307",
+    "hash": "0ef7f04086bd648242d847c5e14d6c279b81428e",
+    "file": "bioc.png",
+    "width": 4096,
+    "height": 2731,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 0.8465412855148315,
+      "m01": 0,
+      "m02": 0.1536674201488495,
+      "m10": 0,
+      "m11": 0.846425473690033,
+      "m12": -0.0002119501878041774
+    },
+    "destination": "assets/portfolio/home-covers/ark-development.webp"
+  },
+  {
+    "slug": "bioc",
+    "node": "1:317",
+    "hash": "79e298c921d3492a92650969cbd53f22ee4bb718",
+    "file": "medicam3.png",
+    "width": 3300,
+    "height": 2200,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 0.7165101766586304,
+      "m01": 0,
+      "m02": 0.28337082266807556,
+      "m10": 0,
+      "m11": 0.7164995670318604,
+      "m12": 0.07060164958238602
+    },
+    "destination": "assets/portfolio/home-covers/bioc.webp"
+  },
+  {
+    "slug": "comod",
+    "node": "1:327",
+    "hash": "cc63008ad01bb72597e83cfa82ddea1a62b29f97",
+    "file": "comod.jpg",
+    "width": 1400,
+    "height": 1050,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 1,
+      "m01": 0,
+      "m02": 0,
+      "m10": 0,
+      "m11": 0.8888756632804871,
+      "m12": 0.055562153458595276
+    },
+    "destination": "assets/portfolio/home-covers/comod.webp"
+  },
+  {
+    "slug": "chariot",
+    "node": "1:337",
+    "hash": "90e5b4f6895d27e23fac3a1e2d03bec9b87ebed0",
+    "file": "chariot.jpg",
+    "width": 2926,
+    "height": 4096,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 1,
+      "m01": 0,
+      "m02": 0,
+      "m10": 0,
+      "m11": 0.4762299358844757,
+      "m12": 0.08481138944625854
+    },
+    "destination": "assets/portfolio/home-covers/chariot.webp"
+  },
+  {
+    "slug": "emma-red",
+    "node": "1:347",
+    "hash": "96c5b9c51eb5b8bb4dfcee60c86e912bfc6aa537",
+    "file": "etic.png",
+    "width": 4096,
+    "height": 2731,
+    "mode": "FILL",
+    "transform": {
+      "m00": 0.8402323722839355,
+      "m01": 0,
+      "m02": 0.07988381385803223,
+      "m10": 0,
+      "m11": 0.7967438101768494,
+      "m12": 0.10162810981273651
+    },
+    "destination": "assets/portfolio/home-covers/emma-red.webp"
+  },
+  {
+    "slug": "etic",
+    "node": "1:357",
+    "hash": "3ac2205f1b4bf5f2ff074489382ac15660084af6",
+    "file": "emma-red.png",
+    "width": 2560,
+    "height": 1621,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 0.9498187303543091,
+      "m01": 0,
+      "m02": 0.025090619921684265,
+      "m10": 0,
+      "m11": 1,
+      "m12": 0
+    },
+    "destination": "assets/portfolio/home-covers/etic.webp"
+  },
+  {
+    "slug": "ark-capital",
+    "node": "1:367",
+    "hash": "a1b8bcaa2afa43d58d8d0732a95824f94c3275fd",
+    "file": "like-coffee.png",
+    "width": 3000,
+    "height": 2529,
+    "mode": "STRETCH",
+    "transform": {
+      "m00": 0.7614741325378418,
+      "m01": 0,
+      "m02": 0.2385258972644806,
+      "m10": 0,
+      "m11": 0.6021848917007446,
+      "m12": 0.2543725073337555
+    },
+    "destination": "assets/portfolio/home-covers/ark-capital.webp"
+  },
+  {
+    "slug": "like-coffee",
+    "node": "1:377",
+    "hash": "75b738058b456f1ee48ad6fb460738ef71371544",
+    "file": "ark-capital.png",
+    "width": 4096,
+    "height": 2913,
+    "mode": "FILL",
+    "transform": {
+      "m00": 1,
+      "m01": 0,
+      "m02": 0,
+      "m10": 0,
+      "m11": 1,
+      "m12": 0
+    },
+    "destination": "assets/portfolio/home-covers/like-coffee.webp"
+  }
+]

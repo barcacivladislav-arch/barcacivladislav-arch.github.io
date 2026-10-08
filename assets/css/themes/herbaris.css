@@ -1,0 +1,9 @@
+/* Project colour only; layout and controls live in project.css/components.css. */
+.herbaris-premium {
+  --case-accent: #3f6b35;
+  --case-dark: #17251a;
+  --case-panel: #f2eee5;
+  --project-accent: var(--case-accent);
+  --project-dark: var(--case-dark);
+  --project-surface: var(--case-panel);
+}

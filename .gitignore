@@ -1,0 +1,19 @@
+# Local browser and visual QA artifacts
+/.playwright-cli/
+/outputs/
+/*.png
+/*.cjs
+/*.cmd
+/work/**
+!/work/*/
+!/work/*/index.html
+
+# Local production and audit notes
+/scripts/
+/CONTENT-STRUCTURE.md
+/CREATIVE-BRIEF.md
+/EMPLOYER-REVIEW.md
+
+# Operating-system files
+.DS_Store
+Thumbs.db

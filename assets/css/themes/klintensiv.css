@@ -1,0 +1,9 @@
+/* Project colour only; layout and controls live in project.css/components.css. */
+.klintensiv-premium {
+  --case-accent: #159bd7;
+  --case-dark: #101d33;
+  --case-panel: #eef6f9;
+  --project-accent: var(--case-accent);
+  --project-dark: var(--case-dark);
+  --project-surface: var(--case-panel);
+}
