@@ -131,9 +131,16 @@
 .systems-panel__logic { margin-inline: 48px; }
 .system-stream { margin-top: 40px; overflow: hidden; }
 .system-stream__track { width: max-content; padding-inline: 48px; display: flex; gap: 12px; }
-.system-stream figure { width: clamp(260px, 24vw, 350px); margin: 0; flex: 0 0 auto; display: grid; grid-template-rows: 1fr 50px; background: var(--paper-light); color: var(--ink); }
+.system-card { position: relative; width: clamp(260px, 24vw, 350px); flex: 0 0 auto; display: block; color: var(--ink); background: var(--paper-light); overflow: hidden; }
+.system-card::after { content: '↗'; position: absolute; z-index: 2; inset: 12px 12px auto auto; width: 36px; height: 36px; display: grid; place-items: center; color: var(--ink); background: var(--paper-light); border: 1px solid var(--line); font-family: var(--label); font-size: 15px; opacity: 0; transform: translateY(6px); transition: opacity 220ms ease, transform 300ms var(--motion-ease), color 180ms ease, background 180ms ease; }
+.system-card figure { height: 100%; margin: 0; display: grid; grid-template-rows: 1fr 58px; }
 .system-stream img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: top center; }
-.system-stream figcaption { padding: 10px 12px; display: flex; align-items: center; font-family: var(--label); font-size: 9px; letter-spacing: .06em; line-height: 1.3; text-transform: uppercase; }
+.system-stream figcaption { padding: 9px 12px; display: grid; align-content: center; gap: 4px; border-top: 1px solid var(--line); font-family: var(--label); font-size: 9px; letter-spacing: .06em; line-height: 1.25; text-transform: uppercase; }
+.system-stream figcaption b { color: var(--blue); font-size: 8px; font-weight: 400; opacity: .72; transition: opacity 180ms ease; }
+.system-card img { transition: transform 650ms var(--motion-ease), filter 650ms var(--motion-ease); }
+.system-card:hover img, .system-card:focus-visible img { transform: scale(1.025); filter: saturate(1.05); }
+.system-card:hover::after, .system-card:focus-visible::after { opacity: 1; transform: none; }
+.system-card:hover figcaption b, .system-card:focus-visible figcaption b { opacity: 1; }
 
 .connection-section { padding: 120px 0; background: var(--clay); }
 .connection-section__inner { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 46px; }
