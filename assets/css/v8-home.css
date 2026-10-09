@@ -115,6 +115,7 @@
 
 .capability-preview--newsletter { width: 258px; }
 .capability-preview--identity { width: 570px; }
+.capability-preview--landscape { width: 650px; }
 
 .capability-preview img {
   width: 100%;
@@ -125,6 +126,7 @@
 
 .capability-preview--newsletter img { object-position: center top; }
 .capability-preview--identity img { object-position: center; }
+.capability-preview--landscape img { object-position: center; }
 .capability-preview:hover img,
 .capability-preview:focus-visible img { transform: scale(1.03); filter: saturate(1.06); }
 
@@ -186,6 +188,7 @@
   .capability-preview { width: 320px; height: 320px; }
   .capability-preview--newsletter { width: 190px; }
   .capability-preview--identity { width: 420px; }
+  .capability-preview--landscape { width: 520px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
