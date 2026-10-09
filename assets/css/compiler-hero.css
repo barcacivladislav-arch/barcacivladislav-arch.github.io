@@ -6,8 +6,8 @@
 .clarity-hero__wash {
   z-index: 2;
   background:
-    linear-gradient(90deg, rgba(24, 23, 19, .95) 0%, rgba(24, 23, 19, .84) 34%, rgba(24, 23, 19, .46) 63%, rgba(24, 23, 19, .3) 100%),
-    linear-gradient(0deg, rgba(24, 23, 19, .7), transparent 46%);
+    linear-gradient(90deg, rgba(24, 23, 19, .84) 0%, rgba(24, 23, 19, .7) 34%, rgba(24, 23, 19, .28) 63%, rgba(24, 23, 19, .12) 100%),
+    linear-gradient(0deg, rgba(24, 23, 19, .52), transparent 42%);
 }
 
 .clarity-hero__inner { z-index: 3; pointer-events: none; }
