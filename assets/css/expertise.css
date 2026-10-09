@@ -87,7 +87,7 @@
 .newsletter-controls button:hover, .newsletter-controls button:focus-visible { color: var(--ink); background: var(--lilac); }
 .newsletter-rail { width: 100%; overflow: hidden; }
 .newsletter-track { width: max-content; padding-inline: max(var(--gutter), calc((100vw - var(--container-max)) / 2)); display: flex; gap: 14px; will-change: transform; }
-.newsletter-hook { position: relative; width: clamp(280px, 25vw, 390px); aspect-ratio: 1 / 1.08; flex: 0 0 auto; overflow: hidden; background: #f5f1e9; scroll-snap-align: start; }
+.newsletter-hook { position: relative; width: clamp(240px, 19vw, 320px); aspect-ratio: 9 / 18; flex: 0 0 auto; overflow: hidden; background: #f5f1e9; scroll-snap-align: start; }
 .newsletter-hook img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transform: scale(1.002); transition: transform 900ms var(--motion-ease), object-position 900ms var(--motion-ease); }
 .newsletter-hook::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.04) 55%, rgba(0,0,0,.76)); pointer-events: none; }
 .newsletter-hook span { position: absolute; z-index: 1; inset: auto 16px 15px; color: white; font-family: var(--label); font-size: 10px; letter-spacing: .07em; text-transform: uppercase; }
@@ -172,7 +172,7 @@
   .newsletter-showcase { padding-top: 24px; }
   .newsletter-toolbar { align-items: flex-start; }
   .newsletter-toolbar p { max-width: 160px; line-height: 1.5; }
-  .newsletter-hook { width: min(78vw, 330px); }
+  .newsletter-hook { width: min(66vw, 280px); }
   .source-card, .source-stream--reverse .source-card, .source-stream--packaging .source-card { width: min(82vw, 390px); }
   .site-card { width: min(88vw, 560px); }
   .site-card > div { height: 390px; }
