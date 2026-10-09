@@ -161,12 +161,13 @@
     ["etic", "Etic"],
     ["emma-red", "Emma Red Estate"],
     ["like-coffee", "Like Coffee"],
-    ["ark-capital", "Ark Capital"]
+    ["ark-capital", "Ark Capital"],
+    ["sope", "SOPE"]
   ];
 
   const smallProjectSlugs = new Set([
     "snus", "ark-development", "coreleaf", "bioc", "medicam3", "comod",
-    "chariot", "etic", "emma-red", "like-coffee", "ark-capital"
+    "chariot", "etic", "emma-red", "like-coffee", "ark-capital", "sope"
   ]);
   const routeSlug = location.pathname.match(/\/work\/([^/]+)\/?(?:index\.html)?$/)?.[1];
   const isSmallProject = smallProjectSlugs.has(routeSlug);
@@ -277,6 +278,7 @@
     "emma-red": "assets/portfolio/home-covers/emma-red.webp",
     "like-coffee": "assets/portfolio/home-covers/like-coffee.webp",
     "ark-capital": "assets/portfolio/home-covers/ark-capital.webp",
+    sope: "assets/portfolio/home-covers/sope.webp",
     klintensiv: "assets/portfolio/home-covers/klintensiv.webp",
     "elite-homes": "assets/portfolio/home-covers/elite-homes.webp"
   };
