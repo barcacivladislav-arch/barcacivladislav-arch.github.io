@@ -41,59 +41,54 @@
 })();
 
 (() => {
-  const showcase = document.querySelector('[data-newsletter-showcase]');
-  const rail = showcase?.querySelector('[data-newsletter-rail]');
-  const previous = showcase?.querySelector('[data-newsletter-prev]');
-  const next = showcase?.querySelector('[data-newsletter-next]');
-  const toggle = showcase?.querySelector('[data-newsletter-toggle]');
-  if (!rail || !previous || !next || !toggle) return;
-
+  const rails = [...document.querySelectorAll('[data-auto-rail]')];
+  if (!rails.length) return;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let paused = reducedMotion.matches;
-  let timer;
+  if (reducedMotion.matches) return;
 
-  const step = () => {
-    const card = rail.querySelector('.newsletter-hook');
-    if (!card) return rail.clientWidth * .8;
-    const gap = parseFloat(getComputedStyle(card.parentElement).gap) || 0;
-    return card.getBoundingClientRect().width + gap;
+  const states = rails.map((rail) => {
+    const track = rail.firstElementChild;
+    if (!track) return null;
+    const originals = [...track.children];
+    if (!originals.length) return null;
+
+    originals.forEach((item) => {
+      const clone = item.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('a, button, [tabindex]').forEach((node) => node.setAttribute('tabindex', '-1'));
+      if (clone.matches('a, button, [tabindex]')) clone.setAttribute('tabindex', '-1');
+      track.appendChild(clone);
+    });
+
+    const first = originals[0];
+    const firstClone = track.children[originals.length];
+    const cycle = firstClone.offsetLeft - first.offsetLeft;
+    const direction = Number(rail.dataset.autoDirection || 1);
+    const state = {
+      rail,
+      cycle,
+      direction,
+      speed: Number(rail.dataset.autoSpeed || 26),
+      position: direction < 0 ? cycle : 0
+    };
+    rail.scrollLeft = state.position;
+    return state;
+  }).filter(Boolean);
+
+  let previousTime = performance.now();
+  const animate = (time) => {
+    const delta = Math.min((time - previousTime) / 1000, .05);
+    previousTime = time;
+    if (!document.hidden) {
+      states.forEach((state) => {
+        if (state.cycle <= 0) return;
+        state.position += state.speed * state.direction * delta;
+        if (state.direction > 0 && state.position >= state.cycle) state.position -= state.cycle;
+        if (state.direction < 0 && state.position <= 0) state.position += state.cycle;
+        state.rail.scrollLeft = state.position;
+      });
+    }
+    requestAnimationFrame(animate);
   };
-
-  const move = (direction) => {
-    const atEnd = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - step() * .35;
-    if (direction > 0 && atEnd) rail.scrollTo({ left: 0, behavior: 'smooth' });
-    else rail.scrollBy({ left: step() * direction, behavior: 'smooth' });
-  };
-
-  const stopTimer = () => {
-    if (timer) window.clearInterval(timer);
-    timer = undefined;
-  };
-
-  const startTimer = () => {
-    stopTimer();
-    if (paused || reducedMotion.matches || document.hidden) return;
-    timer = window.setInterval(() => move(1), 3200);
-  };
-
-  const setPaused = (value) => {
-    paused = value;
-    toggle.textContent = paused ? 'Play' : 'Pause';
-    toggle.setAttribute('aria-pressed', String(paused));
-    startTimer();
-  };
-
-  previous.addEventListener('click', () => { move(-1); startTimer(); });
-  next.addEventListener('click', () => { move(1); startTimer(); });
-  toggle.addEventListener('click', () => setPaused(!paused));
-  showcase.addEventListener('mouseenter', stopTimer);
-  showcase.addEventListener('mouseleave', startTimer);
-  showcase.addEventListener('focusin', stopTimer);
-  showcase.addEventListener('focusout', (event) => {
-    if (!showcase.contains(event.relatedTarget)) startTimer();
-  });
-  document.addEventListener('visibilitychange', startTimer);
-  reducedMotion.addEventListener?.('change', () => setPaused(reducedMotion.matches));
-
-  setPaused(paused);
+  requestAnimationFrame(animate);
 })();
