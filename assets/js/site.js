@@ -167,7 +167,7 @@
 
   const smallProjectSlugs = new Set([
     "snus", "ark-development", "coreleaf", "bioc", "medicam3", "comod",
-    "chariot", "etic", "emma-red", "like-coffee", "ark-capital", "sope"
+    "chariot", "etic", "emma-red", "like-coffee", "ark-capital"
   ]);
   const routeSlug = location.pathname.match(/\/work\/([^/]+)\/?(?:index\.html)?$/)?.[1];
   const isSmallProject = smallProjectSlugs.has(routeSlug);
