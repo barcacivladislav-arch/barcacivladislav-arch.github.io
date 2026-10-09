@@ -6,7 +6,7 @@
 .clarity-hero__wash {
   z-index: 2;
   background:
-    linear-gradient(90deg, rgba(24, 23, 19, .84) 0%, rgba(24, 23, 19, .7) 34%, rgba(24, 23, 19, .28) 63%, rgba(24, 23, 19, .12) 100%),
+    linear-gradient(112deg, rgba(24, 23, 19, .86) 0%, rgba(24, 23, 19, .7) 34%, rgba(24, 23, 19, .18) 67%, rgba(24, 23, 19, .02) 100%),
     linear-gradient(0deg, rgba(24, 23, 19, .52), transparent 42%);
 }
 
@@ -70,7 +70,7 @@
 }
 
 .compiler-stage.is-assembled .compiler-tile {
-  opacity: .52;
+  opacity: .68;
   transform: translate3d(var(--pull-x), var(--pull-y), 0) rotate(0) scale(1);
   filter: saturate(.88) contrast(1.02);
 }
@@ -81,7 +81,7 @@
 
 .compiler-stage.is-assembled .compiler-tile.is-featured {
   z-index: 3;
-  opacity: .88;
+  opacity: .96;
   filter: saturate(1.04) contrast(1.04);
 }
 
@@ -204,7 +204,7 @@
 }
 
 @media (prefers-reduced-motion:reduce) {
-  .compiler-tile { opacity:.52; transform:none; transition:none; }
+  .compiler-tile { opacity:.68; transform:none; transition:none; }
   .compiler-stage__axis { display:none; }
   .compiler-progress b { transform:none; animation:none !important; }
 }
