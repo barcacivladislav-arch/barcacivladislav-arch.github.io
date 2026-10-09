@@ -39,10 +39,11 @@
   align-items: flex-end;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  font-family: var(--label);
-  font-size: 11px;
-  letter-spacing: .05em;
-  line-height: 1.3;
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -.012em;
+  line-height: 1.05;
   text-transform: uppercase;
 }
 
@@ -51,14 +52,48 @@
 .capability-gateway__disciplines span:nth-child(3) { background: var(--clay); }
 .capability-gateway__disciplines span:nth-child(6) { color: var(--paper-light); background: var(--blue); }
 
+.capability-gateway__railbar {
+  min-height: 52px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font: 400 10px/1 var(--label);
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
+
+.capability-gateway__railbar > div { display: flex; align-self: stretch; }
+.capability-gateway__railbar button {
+  width: 54px;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-left: 1px solid var(--line);
+  font-size: 19px;
+  cursor: pointer;
+  transition: color 180ms ease, background 180ms ease;
+}
+.capability-gateway__railbar button:hover,
+.capability-gateway__railbar button:focus-visible { color: var(--paper-light); background: var(--blue); }
+
 .capability-gateway__rail {
   width: 100vw;
-  margin-top: 16px;
   margin-left: calc((100% - 100vw) / 2);
   padding-block: 10px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   background: var(--ink);
+  cursor: grab;
+  scrollbar-width: none;
+  touch-action: pan-x pan-y;
+  overscroll-behavior-inline: contain;
 }
+
+.capability-gateway__rail::-webkit-scrollbar { display: none; }
+.capability-gateway__rail.is-dragging { cursor: grabbing; user-select: none; }
 
 .capability-gateway__track {
   width: max-content;
@@ -147,6 +182,7 @@
   .capability-section--gateway .capability-intro { grid-template-columns: 1fr; }
   .capability-section--gateway .capability-intro h2 { font-size: clamp(40px, 11vw, 58px); }
   .capability-gateway__disciplines { grid-template-columns: repeat(2, 1fr); }
+  .capability-gateway__disciplines span { font-size: 12px; }
   .capability-preview { width: 320px; height: 320px; }
   .capability-preview--newsletter { width: 190px; }
   .capability-preview--identity { width: 420px; }
