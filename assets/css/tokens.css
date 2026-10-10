@@ -25,6 +25,38 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/SpaceGrotesk-400.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/SpaceGrotesk-500.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/SpaceGrotesk-600.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/SpaceGrotesk-700.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
 
@@ -60,6 +92,7 @@
   --font-body: "Work Sans", Arial, sans-serif;
   --font-display: "Portfolio Display", "Portfolio Sans", Arial, sans-serif;
   --font-label: "Portfolio Sans", Arial, sans-serif;
+  --font-grotesk: "Space Grotesk", "Work Sans", Arial, sans-serif;
   --sans: var(--font-body);
   --display: var(--font-display);
   --label: var(--font-label);

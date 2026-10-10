@@ -141,6 +141,11 @@
       const byPath = (pattern) => assets.find((asset) => pattern.test((asset.source || "").replace(/\\/g, "/")));
       const pages = [
         {
+          label: "Landing Page",
+          desktop: byPath(/Landing Page\/Home Page\.jpg$/i),
+          mobile: byPath(/Landing Page\/Home Page-1\.jpg$/i)
+        },
+        {
           label: "Collection Pages",
           desktop: byPath(/Collection Pages\/Category\.jpg$/i),
           mobile: byPath(/Collection Pages\/Category-1\.jpg$/i)
@@ -155,15 +160,6 @@
           desktop: byPath(/Contact Us\/Contact Us\.jpg$/i),
           mobile: byPath(/Contact Us\/Contact Us-1\.jpg$/i)
         },
-        {
-          label: "E Commerce Pages",
-          desktop: byPath(/E-commerce Pages\/Shopping Cart\.jpg$/i)
-        },
-        {
-          label: "Landing Page",
-          desktop: byPath(/Landing Page\/Home Page\.jpg$/i),
-          mobile: byPath(/Landing Page\/Home Page-1\.jpg$/i)
-        }
       ].filter((page) => page.desktop || page.mobile);
       mediaComponents.renderWebsiteViewer(gallery, assets, { root, pages });
       return;

@@ -4,7 +4,7 @@
   if (!api) return;
   const from = (group, patterns) => patterns.flatMap((pattern) => assets.filter((asset) => asset.group === group && pattern.test(asset.source)));
   const unique = (items) => [...new Map(items.map((item) => [item.src, item])).values()];
-  const evergreenGroups = [
+  const evergreenFamilies = [
     { label: "Animal care", title: "Build confidence around specialist care", copy: "An introductory creative and one motion-led consideration example establish the category without repeating funnel variations.", assets: from("evergreen-ads", [/Animal Care Top Funnel\/1080x1080/i, /Animal Middle Funnel Gif 1\/1080 X 1080/i]) },
     { label: "Bundles", title: "Turn product combinations into a clear proposition", copy: "The selected V2 direction communicates the bundle as one useful solution in two complementary brand treatments.", assets: from("evergreen-ads", [/Boundle V2\/1080x1080 cream/i, /Boundle V2\/1080x1080 green/i]) },
     { label: "Product education", title: "Use unexpected hooks to explain the product", copy: "The ‘Don’t buy this product’ and GPT families translate ingredients, use cases and objections into concise campaign stories.", assets: from("evergreen-ads", [/Don_t buy this product\/1080x1080/i, /GPT\/1080x1080/i]) },
@@ -12,6 +12,15 @@
     { label: "Customer proof", title: "Let behaviour and reviews carry the argument", copy: "Review-led and search-bar concepts turn familiar digital behaviours into evidence and product discovery.", assets: from("evergreen-ads", [/Reviews Ads\/1080x1080/i, /Search Bars\/Artboard 1 copy 42/i, /Search Bars\/Artboard 1 copy 43/i, /Search Bars\/Artboard 1-1/i, /Search Bars\/Artboard 1-2/i]) },
     { label: "Personal care", title: "Extend the system beyond household care", copy: "A compact selection introduces shampoo, gifting and soap while retaining the same warm, benefit-led communication.", assets: from("evergreen-ads", [/Shampoo\/1080x1080/i, /Soap Gift\/1080x1080 cream/i, /Soaps V1\/1080x1080/i]) }
   ].map((group) => ({ ...group, assets: unique(group.assets) }));
+  const evergreenGroups = [
+    {
+      label: "Campaign overview",
+      title: "One system across every message",
+      copy: "A broad first view of the advertising system, from category education and product benefits to bundles, proof and conversion.",
+      assets: unique(evergreenFamilies.flatMap((group) => group.assets))
+    },
+    ...evergreenFamilies
+  ];
   const summerGroups = [
     { label: "Awareness", title: "Open the campaign with one recognisable world", copy: "Two creative directions are shown in their Meta and Google formats to demonstrate adaptation without turning every resize into a separate deliverable.", assets: from("summer-campaign", [/Top Funnel\/Google 1200x628\/Artboard 2 copy@/i, /Top Funnel\/Google 1200x628\/Artboard 2@/i, /Top Funnel\/Meta 1080x1080\/Artboard 1 copy 2@/i, /Top Funnel\/Meta 1080x1080\/Artboard 4 copy 8@/i]) },
     { label: "Collections", title: "Move from campaign promise to category choice", copy: "Collection ads organise the sale around product needs, giving the middle of the funnel more relevance than a repeated generic discount message.", assets: from("summer-campaign", [/Middle Funnel\//i]) },

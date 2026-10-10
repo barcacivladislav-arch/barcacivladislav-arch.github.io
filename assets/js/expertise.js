@@ -1,7 +1,8 @@
 (() => {
   const links = [...document.querySelectorAll('.expertise-index a')];
   const sections = links.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
-  if (!links.length || !sections.length || !('IntersectionObserver' in window)) return;
+  const index = document.querySelector('.expertise-index');
+  if (!links.length || !sections.length || !index) return;
 
   const setCurrent = (id) => {
     links.forEach((link) => {
@@ -12,13 +13,42 @@
     });
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-    if (visible[0]) setCurrent(visible[0].target.id);
-  }, { rootMargin: '-25% 0px -58% 0px', threshold: [0, .15, .5] });
-
-  sections.forEach((section) => observer.observe(section));
+  let frame = 0;
+  let lockedUntil = 0;
+  const sync = () => {
+    frame = 0;
+    if (performance.now() < lockedUntil) return;
+    const stickyIndex = getComputedStyle(index).position === 'sticky' ? index.offsetHeight : 0;
+    const marker = (document.querySelector('.site-header')?.offsetHeight || 0) + stickyIndex + 28;
+    let current = sections[0];
+    sections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= marker) current = section;
+    });
+    setCurrent(current.id);
+  };
+  links.forEach((link) => link.addEventListener('click', (event) => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    event.preventDefault();
+    lockedUntil = performance.now() + 1300;
+    setCurrent(target.id);
+    const positionTarget = () => {
+      const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+      const stickyIndex = getComputedStyle(index).position === 'sticky' ? index.offsetHeight : 0;
+      const top = target.getBoundingClientRect().top + scrollY - headerHeight - stickyIndex - 18;
+      scrollTo({ top, behavior: 'auto' });
+    };
+    positionTarget();
+    requestAnimationFrame(positionTarget);
+    window.setTimeout(positionTarget, 260);
+    window.setTimeout(positionTarget, 900);
+    history.replaceState(null, '', `#${target.id}`);
+  }));
+  const requestSync = () => { if (!frame) frame = requestAnimationFrame(sync); };
+  addEventListener('scroll', requestSync, { passive: true });
+  addEventListener('resize', requestSync, { passive: true });
   setCurrent(sections[0].id);
+  sync();
 })();
 
 (() => {
@@ -69,9 +99,19 @@
       cycle,
       direction,
       speed: Number(rail.dataset.autoSpeed || 26),
-      position: direction < 0 ? cycle : 0
+      position: direction < 0 ? cycle : 0,
+      userUntil: 0
     };
     rail.scrollLeft = state.position;
+    const pauseForInput = () => {
+      state.userUntil = performance.now() + 4200;
+      state.position = rail.scrollLeft;
+    };
+    rail.addEventListener('wheel', pauseForInput, { passive: true });
+    rail.addEventListener('pointerdown', pauseForInput, { passive: true });
+    rail.addEventListener('touchstart', pauseForInput, { passive: true });
+    rail.addEventListener('focusin', pauseForInput);
+    rail.addEventListener('mouseenter', pauseForInput);
     return state;
   }).filter(Boolean);
 
@@ -81,7 +121,7 @@
     previousTime = time;
     if (!document.hidden) {
       states.forEach((state) => {
-        if (state.cycle <= 0) return;
+        if (state.cycle <= 0 || time < state.userUntil) return;
         state.position += state.speed * state.direction * delta;
         if (state.direction > 0 && state.position >= state.cycle) state.position -= state.cycle;
         if (state.direction < 0 && state.position <= 0) state.position += state.cycle;

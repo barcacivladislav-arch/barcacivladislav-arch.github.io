@@ -18,7 +18,6 @@
     }));
     const adAssets = manifest.filter((asset) => asset.group === "ads");
     const campaignGroups = [
-      { label: "Collection stories", title: "Lead with the product world", purpose: "Awareness", copy: "Editorial compositions introduce brands, seasonal collections and the store’s point of view before price becomes the focus.", assets: adAssets.slice(0, 5) },
       { label: "Designer offers", title: "Make the offer direct", purpose: "Consideration", copy: "Product-led sale creatives give each designer item enough visual authority while keeping the commercial hierarchy immediate.", assets: adAssets.slice(5, 9) },
       { label: "Seasonal sale", title: "Build energy across the sale", purpose: "Campaign", copy: "A more expressive visual language carries summer messaging without losing the retailer’s premium tone.", assets: adAssets.slice(9, 16) },
       { label: "Conversion", title: "Turn selection into a reason to click", purpose: "Conversion", copy: "Brand pairings, category edits and catalogue-like layouts move shoppers toward a specific choice.", assets: adAssets.slice(16, 23) }
@@ -165,7 +164,6 @@
 
   const adAssets = manifest.filter((asset) => asset.group === "ads");
   const campaigns = [
-    { label: "Collection stories", title: "Lead with the product world", copy: "Editorial compositions introduce brands, seasonal collections and the store’s point of view before price becomes the focus.", assets: adAssets.slice(0, 5) },
     { label: "Designer offers", title: "Make the offer direct, not generic", copy: "Product-led sale creatives give each designer item enough visual authority while keeping the commercial hierarchy immediate.", assets: adAssets.slice(5, 9) },
     { label: "Seasonal sale", title: "Build energy across a promotional period", copy: "A more expressive visual language carries broader summer messaging without losing the retailer’s premium tone.", assets: adAssets.slice(9, 16) },
     { label: "Conversion", title: "Turn selection into a reason to click", copy: "Brand pairings, category edits and catalogue-like layouts help shoppers move from a general promotion toward a specific choice.", assets: adAssets.slice(16, 23) }

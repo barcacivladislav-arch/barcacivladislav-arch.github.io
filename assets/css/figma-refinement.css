@@ -868,6 +868,21 @@ body.small-project-template .site-footer a { color: var(--paper-light); }
 /* Keep the supplied Intergasses cover's regulator and product group in frame. */
 .intergasses-case .case-hero__media { object-position: center top; }
 
+/* October feedback pass: keep project covers visible and data typography consistent. */
+.case-hero--media::after { background: rgba(0, 0, 0, .2) !important; }
+.case-facts > div:nth-child(3),
+.case-facts > div:nth-child(3) :is(dt, dd) { color: #fff !important; }
+.header-meta,
+.work-index__eyebrow,
+.case-section__number,
+.project-chapter__index,
+.media-tabs__timing { font-family: var(--font-grotesk) !important; }
+.media-component__head {
+  margin-bottom: clamp(32px, 4vw, 52px) !important;
+  padding-bottom: clamp(24px, 3vw, 36px) !important;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 24%, transparent) !important;
+}
+
 /* Figma type roles: one display face for headings and one text face for copy. */
 :where(
   .case-intro h2,

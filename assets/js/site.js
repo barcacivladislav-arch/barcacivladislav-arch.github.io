@@ -278,7 +278,7 @@
     "emma-red": "assets/portfolio/home-covers/emma-red.webp",
     "like-coffee": "assets/portfolio/home-covers/like-coffee.webp",
     "ark-capital": "assets/portfolio/home-covers/ark-capital.webp",
-    sope: "assets/portfolio/home-covers/sope.webp",
+    sope: "assets/portfolio/home-covers/sope.png",
     klintensiv: "assets/portfolio/home-covers/klintensiv.webp",
     "elite-homes": "assets/portfolio/home-covers/elite-homes.webp"
   };

@@ -70,7 +70,7 @@
     return head;
   };
 
-  const createTabs = (items, onSelect, label) => {
+  const createTabs = (items, onSelect, label, duration = 8000) => {
     const shell = document.createElement("div");
     shell.className = "media-tabs-shell";
     const tabs = document.createElement("div");
@@ -81,7 +81,8 @@
     let timer = 0;
     let isVisible = true;
     let isPaused = false;
-    const duration = 8000;
+    const durationSeconds = Math.round(duration / 1000);
+    shell.style.setProperty("--media-tab-duration", `${duration}ms`);
     const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const stopRotation = () => window.clearInterval(timer);
     const startRotation = () => {
@@ -141,8 +142,8 @@
     next.setAttribute("aria-label", `Next ${label.toLowerCase()}`);
     const timing = document.createElement("span");
     timing.className = "media-tabs__timing";
-    timing.setAttribute("aria-label", "Automatic selection time: 8 seconds");
-    timing.innerHTML = `<span class="media-tabs__time">8s</span><span class="media-tabs__progress"><span></span></span>`;
+    timing.setAttribute("aria-label", `Automatic selection time: ${durationSeconds} seconds`);
+    timing.innerHTML = `<span class="media-tabs__time">${durationSeconds}s</span><span class="media-tabs__progress"><span></span></span>`;
     const progressFill = timing.querySelector(".media-tabs__progress span");
     controls.append(previous, playPause, next, timing);
     shell.append(tabs, controls);
@@ -313,7 +314,7 @@
       }
       document.dispatchEvent(new Event("portfolio:media-ready"));
     };
-    if (families.length > 1) gallery.append(createTabs(families, renderFamily, "Website pages"));
+    if (families.length > 1) gallery.append(createTabs(families, renderFamily, "Website pages", 12000));
     gallery.append(stage);
     renderFamily(families[0]);
   };
@@ -373,7 +374,7 @@
       }
       document.dispatchEvent(new Event("portfolio:media-ready"));
     };
-    if (families.length > 1) gallery.append(createTabs(families, renderFamily, "Advertising categories"));
+    if (families.length > 1) gallery.append(createTabs(families, renderFamily, "Advertising categories", 12000));
     gallery.append(stage);
     renderFamily(families[0]);
   };
@@ -446,7 +447,7 @@
     }
     introTitle.textContent = "Campaign inbox.";
     introCopy.textContent = "Hover to follow each email at a calm pace, or scroll directly to inspect any part of it.";
-    if (families.length > 1) gallery.append(createTabs(families, renderGroup, "Newsletter campaigns"));
+    if (families.length > 1) gallery.append(createTabs(families, renderGroup, "Newsletter campaigns", 16000));
     gallery.append(scroller, dialog);
 
     let selected = 0;
