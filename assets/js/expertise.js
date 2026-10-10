@@ -102,6 +102,11 @@
       position: direction < 0 ? cycle : 0,
       userUntil: 0
     };
+    if (!rail.id) rail.id = `expertise-rail-${Math.random().toString(36).slice(2, 8)}`;
+    const controls = document.createElement('div');
+    controls.className = 'expertise-rail-control wrap';
+    controls.innerHTML = `<span>Drag, scroll or use arrows to explore every work</span><div><button type="button" aria-label="Previous works" aria-controls="${rail.id}">←</button><button type="button" aria-label="Next works" aria-controls="${rail.id}">→</button></div>`;
+    rail.before(controls);
     rail.scrollLeft = state.position;
     const pauseForInput = () => {
       state.userUntil = performance.now() + 4200;
@@ -112,6 +117,11 @@
     rail.addEventListener('touchstart', pauseForInput, { passive: true });
     rail.addEventListener('focusin', pauseForInput);
     rail.addEventListener('mouseenter', pauseForInput);
+    controls.querySelectorAll('button').forEach((button, buttonIndex) => button.addEventListener('click', () => {
+      pauseForInput();
+      rail.scrollBy({ left: rail.clientWidth * (buttonIndex ? .82 : -.82), behavior: 'smooth' });
+      window.setTimeout(() => { state.position = rail.scrollLeft; }, 500);
+    }));
     return state;
   }).filter(Boolean);
 

@@ -56,6 +56,15 @@
 .source-stream--reverse .source-card { width: clamp(300px, 29vw, 450px); }
 .source-stream--packaging .source-card { width: clamp(340px, 32vw, 490px); aspect-ratio: 4 / 3; }
 
+.expertise-rail-control { margin-top: -28px; margin-bottom: 18px; display: flex; justify-content: flex-end; align-items: center; gap: 18px; }
+.expertise-rail-control span { margin-right: auto; color: currentColor; font-family: var(--label); font-size: 10px; letter-spacing: .07em; text-transform: uppercase; opacity: .65; }
+.expertise-rail-control div { display: flex; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); }
+.expertise-rail-control button { width: 48px; height: 42px; display: grid; place-items: center; border: 0; border-right: 1px solid color-mix(in srgb, currentColor 30%, transparent); color: inherit; background: transparent; cursor: pointer; transition: color 180ms ease, background 180ms ease; }
+.expertise-rail-control button:last-child { border-right: 0; }
+.expertise-rail-control button:hover, .expertise-rail-control button:focus-visible { color: var(--ink); background: var(--paper-light); }
+.expertise-section--newsletters .expertise-rail-control { color: var(--paper-light); }
+.expertise-section--packaging .expertise-rail-control { color: var(--ink); }
+
 .media-link { position: relative; display: block; overflow: hidden; background: var(--soft); }
 .media-link img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms var(--motion-ease); }
 .media-link:hover img { transform: scale(1.015); }
@@ -187,6 +196,7 @@
   .newsletter-toolbar { align-items: flex-start; }
   .newsletter-toolbar p { max-width: 160px; line-height: 1.5; }
   .newsletter-hook { width: min(66vw, 280px); }
+  .expertise-rail-control { margin-top: -18px; padding-inline: var(--gutter); }
   .source-card, .source-stream--reverse .source-card, .source-stream--packaging .source-card { width: min(82vw, 390px); }
   .site-card { width: min(88vw, 560px); }
   .site-card > div { height: 390px; }
