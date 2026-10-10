@@ -30,7 +30,7 @@
     const target = document.querySelector(link.getAttribute('href'));
     if (!target) return;
     event.preventDefault();
-    lockedUntil = performance.now() + 1300;
+    lockedUntil = performance.now() + 3800;
     setCurrent(target.id);
     const positionTarget = () => {
       const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
@@ -38,10 +38,13 @@
       const top = target.getBoundingClientRect().top + scrollY - headerHeight - stickyIndex - 18;
       scrollTo({ top, behavior: 'auto' });
     };
-    positionTarget();
-    requestAnimationFrame(positionTarget);
-    window.setTimeout(positionTarget, 260);
-    window.setTimeout(positionTarget, 900);
+    const correctionTimes = [0, 90, 220, 480, 850, 1400, 2200, 3200];
+    correctionTimes.forEach((delay) => window.setTimeout(positionTarget, delay));
+    const correctAfterAssetLoad = (loadEvent) => {
+      if (loadEvent.target instanceof HTMLImageElement) positionTarget();
+    };
+    document.addEventListener('load', correctAfterAssetLoad, true);
+    window.setTimeout(() => document.removeEventListener('load', correctAfterAssetLoad, true), 3800);
     history.replaceState(null, '', `#${target.id}`);
   }));
   const requestSync = () => { if (!frame) frame = requestAnimationFrame(sync); };
