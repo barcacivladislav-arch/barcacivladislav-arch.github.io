@@ -198,3 +198,207 @@
   .capability-preview { scroll-snap-align: start; }
   .thinking-portrait img { transform: none; }
 }
+
+/* Editorial profile: a quieter, more personal close to the project archive. */
+.thinking-section {
+  position: relative;
+  min-height: 900px;
+  padding: clamp(64px, 7vw, 112px) max(24px, calc((100vw - 1500px) / 2));
+  display: grid;
+  grid-template-columns: minmax(360px, .8fr) minmax(0, 1.2fr);
+  gap: clamp(64px, 8vw, 144px);
+  align-items: center;
+  overflow: hidden;
+  color: var(--paper-light);
+  background: var(--ink);
+}
+
+.thinking-section::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--clay) 0 18%, var(--blue) 18% 62%, var(--lilac) 62% 100%);
+}
+
+.thinking-section::after {
+  content: 'ABOUT';
+  position: absolute;
+  right: -0.04em;
+  bottom: -.15em;
+  color: rgba(243, 234, 223, .025);
+  font: 400 clamp(9rem, 21vw, 25rem)/.7 var(--display);
+  letter-spacing: -.075em;
+  pointer-events: none;
+}
+
+.thinking-portrait {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 4 / 5;
+  align-items: stretch;
+  overflow: hidden;
+  background: #0c0c0b;
+  box-shadow: 22px 22px 0 var(--blue);
+}
+
+.thinking-portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(243, 234, 223, .24);
+  background: linear-gradient(180deg, transparent 62%, rgba(8, 8, 7, .84));
+  pointer-events: none;
+}
+
+.thinking-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 34%;
+  filter: grayscale(1) contrast(1.07);
+  transform: translate3d(0, var(--home-parallax, 0px), 0) scale(1.065);
+  transition: filter 700ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.thinking-section:hover .thinking-portrait img { filter: grayscale(.15) contrast(1.03); }
+
+.thinking-portrait__meta {
+  position: absolute;
+  z-index: 2;
+  right: 20px;
+  bottom: 18px;
+  left: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--paper-light);
+  font: 400 .62rem/1.2 var(--label);
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
+
+.thinking-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding: 0;
+  display: block;
+  overflow-wrap: normal;
+}
+
+.thinking-copy .section-label { color: var(--clay); }
+
+.thinking-copy h2 {
+  max-width: 920px;
+  margin: clamp(42px, 6vh, 72px) 0 36px;
+  color: var(--paper-light);
+  font: 400 clamp(3.8rem, 5vw, 6.1rem)/.84 var(--display);
+  letter-spacing: -.065em;
+  text-wrap: balance;
+}
+
+.thinking-copy h2 span { display: block; color: #9a91ff; }
+
+.thinking-copy > p {
+  max-width: 720px;
+  margin: 0;
+  color: #c8c1b7;
+  font-size: clamp(1rem, 1.28vw, 1.22rem);
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+.thinking-principles {
+  min-height: 0;
+  margin: clamp(44px, 6vh, 64px) 0 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid rgba(243, 234, 223, .24);
+  border-bottom: 0;
+}
+
+.thinking-principles span,
+.thinking-principles span:not(:first-child) {
+  min-height: 70px;
+  padding: 16px 0;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  border-right: 0;
+  border-bottom: 1px solid rgba(243, 234, 223, .24);
+  color: var(--paper-light);
+  font-size: .95rem;
+  line-height: 1.35;
+  transition: padding-left 300ms ease, color 300ms ease;
+}
+
+.thinking-principles span:hover { padding-left: 10px; color: #b9b2ff; }
+.thinking-principles i { color: var(--clay); font: 400 .62rem/1 var(--label); letter-spacing: .08em; font-style: normal; }
+
+.thinking-copy .button-link {
+  min-height: 52px;
+  color: var(--paper-light);
+  background: transparent;
+  border-color: rgba(243, 234, 223, .65);
+}
+
+.thinking-copy .button-link:hover { color: var(--ink); background: var(--paper-light); border-color: var(--paper-light); }
+
+.home-motion-ready .thinking-portrait,
+.home-motion-ready .thinking-copy .section-label,
+.home-motion-ready .thinking-copy h2,
+.home-motion-ready .thinking-copy > p,
+.home-motion-ready .thinking-principles,
+.home-motion-ready .thinking-copy .button-link {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.home-motion-ready .thinking-portrait { transform: translateX(-36px); }
+.home-motion-ready .thinking-copy h2 { transition-delay: 80ms; }
+.home-motion-ready .thinking-copy > p { transition-delay: 150ms; }
+.home-motion-ready .thinking-principles { transition-delay: 220ms; }
+.home-motion-ready .thinking-copy .button-link { transition-delay: 280ms; }
+
+.home-motion-ready .thinking-section.is-motion-visible .thinking-portrait,
+.home-motion-ready .thinking-section.is-motion-visible .thinking-copy .section-label,
+.home-motion-ready .thinking-section.is-motion-visible .thinking-copy h2,
+.home-motion-ready .thinking-section.is-motion-visible .thinking-copy > p,
+.home-motion-ready .thinking-section.is-motion-visible .thinking-principles,
+.home-motion-ready .thinking-section.is-motion-visible .thinking-copy .button-link {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .thinking-section { min-height: 0; grid-template-columns: 1fr; gap: 72px; padding-block: 72px 88px; }
+  .thinking-portrait { width: min(100%, 620px); justify-self: center; }
+  .thinking-copy { max-width: 760px; }
+  .thinking-copy h2 { font-size: clamp(3.6rem, 10vw, 6.4rem); }
+}
+
+@media (max-width: 560px) {
+  .thinking-section { gap: 58px; padding: 58px 20px 72px; }
+  .thinking-portrait { width: calc(100% - 18px); justify-self: start; box-shadow: 18px 18px 0 var(--blue); }
+  .thinking-portrait__meta { right: 14px; bottom: 14px; left: 14px; display: grid; font-size: .54rem; }
+  .thinking-copy h2 { margin-block: 34px 28px; font-size: clamp(3.1rem, 14.5vw, 4.4rem); line-height: .84; }
+  .thinking-copy > p { font-size: 1rem; }
+  .thinking-principles { margin-block: 38px 32px; }
+  .thinking-principles span,
+  .thinking-principles span:not(:first-child) { grid-template-columns: 38px minmax(0, 1fr); gap: 10px; font-size: .88rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-motion-ready .thinking-portrait,
+  .home-motion-ready .thinking-copy .section-label,
+  .home-motion-ready .thinking-copy h2,
+  .home-motion-ready .thinking-copy > p,
+  .home-motion-ready .thinking-principles,
+  .home-motion-ready .thinking-copy .button-link { opacity: 1; transform: none; transition: none; }
+}

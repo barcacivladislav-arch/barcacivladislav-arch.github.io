@@ -19,6 +19,18 @@
     section?.classList.add('is-motion-visible');
   }
 
+  const aboutSection = document.querySelector('.thinking-section');
+  if ('IntersectionObserver' in window && aboutSection) {
+    const aboutObserver = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return;
+      aboutSection.classList.add('is-motion-visible');
+      aboutObserver.disconnect();
+    }, { rootMargin: '0px 0px -10% 0px', threshold: .16 });
+    aboutObserver.observe(aboutSection);
+  } else {
+    aboutSection?.classList.add('is-motion-visible');
+  }
+
   if (rail && !reducedMotion.matches) {
     const track = rail.querySelector('.capability-gateway__track');
     const previousButton = document.querySelector('[data-home-rail-prev]');
