@@ -29,7 +29,11 @@
     legacyBanners?.remove();
     legacyNewsletters?.remove();
   }
-  const group = (name) => assets.filter((asset) => asset.group === name);
+  const hiddenCampaigns = new Set(["tofu v1.webp", "mofu v1.webp", "bofu v2.webp"]);
+  const group = (name) => assets.filter((asset) => {
+    const fileName = asset.src?.split("/").pop()?.toLowerCase();
+    return asset.group === name && !hiddenCampaigns.has(fileName);
+  });
   const campaignGroups = [
     { label: "Credibility", title: "Make professional proof visible", copy: "Manufacturing, laboratory and clinical imagery establish the credibility that later promotional messages depend on.", assets: group("credibility") },
     { label: "Categories", title: "One framework across four professional uses", copy: "Colour and application imagery distinguish instruments, nebulisation, hand hygiene and surfaces without fragmenting the brand.", assets: group("categories") },

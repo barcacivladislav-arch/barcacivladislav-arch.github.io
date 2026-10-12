@@ -5,17 +5,29 @@
 
   const tiles = [...stage.querySelectorAll('.compiler-tile')];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const columns = () => matchMedia('(max-width: 760px)').matches ? 3 : 4;
   let active = 0;
   let timer = 0;
 
   const feature = (index) => {
     active = (index + tiles.length) % tiles.length;
-    tiles.forEach((tile, tileIndex) => tile.classList.toggle('is-featured', tileIndex === active));
+    const columnCount = columns();
+    const activeRow = Math.floor(active / columnCount);
+    const activeColumn = active % columnCount;
+    tiles.forEach((tile, tileIndex) => {
+      const row = Math.floor(tileIndex / columnCount);
+      const column = tileIndex % columnCount;
+      const neighbor = Math.abs(row - activeRow) + Math.abs(column - activeColumn) === 1;
+      tile.classList.toggle('is-featured', tileIndex === active);
+      tile.classList.toggle('is-neighbor', neighbor);
+    });
+    stage.style.setProperty('--focus-x', `${((activeColumn + .5) / columnCount) * 100}%`);
+    stage.style.setProperty('--focus-y', `${((activeRow + .5) / Math.ceil(tiles.length / columnCount)) * 100}%`);
   };
 
   const startLoop = () => {
     clearInterval(timer);
-    if (!reduced) timer = setInterval(() => feature(active + 1), 3400);
+    if (!reduced && !document.hidden) timer = setInterval(() => feature(active + 1), 4200);
   };
 
   requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -52,6 +64,9 @@
       tile.style.setProperty('--pull-y', '0px');
     });
   });
+
+  addEventListener('resize', () => feature(active), { passive: true });
+  document.addEventListener('visibilitychange', () => document.hidden ? clearInterval(timer) : startLoop());
 
   new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) startLoop();
