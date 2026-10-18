@@ -283,32 +283,29 @@
     "elite-homes": "assets/portfolio/home-covers/elite-homes.webp"
   };
   const installHeroMedia = () => {
-    if (!hero || hero.querySelector(".case-hero__media")) return;
+    if (!hero || hero.dataset.coverReady === "true") return;
     const source = document.querySelector(".case-overview img, main .project-media img, main .board-image, main img");
     const attachedHero = figmaHeroCovers[routeSlug];
     if (!attachedHero && !source?.src) return;
-    const media = document.createElement("img");
-    media.className = "case-hero__media";
-    media.src = attachedHero ? `${document.body.dataset.assetRoot || ""}${attachedHero}?v=20261008-1` : source.currentSrc || source.src;
-    media.alt = "";
-    media.setAttribute("aria-hidden", "true");
+    let cover = overview;
+    if (!cover) {
+      cover = document.createElement("figure");
+      cover.className = "case-overview";
+      hero.insertAdjacentElement("afterend", cover);
+    }
+    let media = cover.querySelector("img");
+    if (!media) {
+      media = document.createElement("img");
+      cover.append(media);
+    }
+    media.src = attachedHero ? `${document.body.dataset.assetRoot || ""}${attachedHero}?v=20261014-1` : source.currentSrc || source.src;
+    media.alt = `${document.querySelector(".case-title")?.textContent.trim() || "Project"} cover`;
     media.loading = "eager";
-    hero.prepend(media);
-    hero.classList.add("case-hero--media");
+    media.setAttribute("data-lightbox", "true");
+    hero.dataset.coverReady = "true";
   };
   installHeroMedia();
   document.addEventListener("portfolio:media-ready", installHeroMedia);
-  if (overview && role && responsibilities && outcome) {
-    const snapshot = document.createElement("section");
-    snapshot.className = "case-snapshot wrap reveal";
-    snapshot.setAttribute("aria-label", "Project role and outcome summary");
-    snapshot.innerHTML = `
-      <div><span class="section-label">Role</span><p>${role.textContent}</p></div>
-      <div><span class="section-label">Responsibilities</span><p>${responsibilities.textContent}</p></div>
-      <div class="case-snapshot__outcome"><span class="section-label">Outcome</span><p>${outcome.textContent}</p></div>`;
-    overview.insertAdjacentElement("afterend", snapshot);
-  }
-
   const currentIndex = projectOrder.findIndex(([slug]) => location.pathname.includes(`/work/${slug}/`));
   const footer = document.querySelector(".site-footer");
   if (currentIndex >= 0 && footer) {

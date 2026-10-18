@@ -12,15 +12,15 @@
         <div class="case-section__head"><span class="case-section__number">01</span><div><h2>From professional trust to product choice.</h2></div><div class="case-section__copy"><h3>Campaign architecture</h3><p>Each category answers a different buying question. The approved selection now moves between professional credibility, category use cases, funnel stages and seasonal conversion without stacking every family vertically.</p></div></div>
         <div class="campaign-reel" data-klintensiv-campaigns aria-label="Klintensiv campaign categories"></div>
       </section>
-      <section class="case-section education-stage reveal">
+      <section class="case-section wrap education-stage reveal" id="education">
         <div class="case-section__head"><span class="case-section__number">02</span><div><h2>A separate voice for prevention.</h2></div><div class="case-section__copy"><h3>Healthcare education</h3><p>The final poster series uses illustration, metaphor and direct instruction to communicate hygiene and prevention. All eight approved final designs remain available.</p></div></div>
         <div class="campaign-reel" data-klintensiv-posters aria-label="Eight final healthcare posters"></div>
       </section>
-      <section class="case-section wrap reveal">
+      <section class="case-section wrap reveal" id="seasonal">
         <div class="case-section__head"><span class="case-section__number">03</span><div><h2>Carry the campaign onto the storefront.</h2></div><div class="case-section__copy"><h3>Website banners</h3><p>Desktop and mobile banner families keep the spring and summer campaigns legible across very different proportions. Each family remains browsable as a campaign system rather than a Behance-style image sequence.</p></div></div>
         <div data-klintensiv-banners aria-label="Klintensiv website banner families"></div>
       </section>
-      <section class="case-section wrap reveal">
+      <section class="case-section wrap reveal" id="email">
         <div class="case-section__head"><span class="case-section__number">04</span><div><h2>Campaign thinking continued into the inbox.</h2></div><div class="case-section__copy"><h3>Newsletters</h3><p>Three long-form newsletters extend the same hierarchy into retention while remaining compact to browse and available for focused reading.</p></div></div>
         <div class="campaign-inbox"><div class="inbox-head"><h3>Campaign inbox.</h3><p>Hover to follow the hierarchy through each email, or open one for a focused full-length view.</p></div><div data-klintensiv-inbox></div></div>
       </section>`;
@@ -28,8 +28,18 @@
     legacyCampaign.remove();
     legacyBanners?.remove();
     legacyNewsletters?.remove();
+    const chapters = document.querySelector('[data-project-contents-list]');
+    const seasonal = chapters?.querySelector('a[href="#seasonal"]')?.closest('li');
+    if (chapters && seasonal && !chapters.querySelector('a[href="#education"]')) {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = '#education';
+      link.textContent = 'Healthcare education';
+      item.append(link);
+      seasonal.before(item);
+    }
   }
-  const hiddenCampaigns = new Set(["tofu v1.webp", "mofu v1.webp", "bofu v2.webp"]);
+  const hiddenCampaigns = new Set(["tofu v1.webp", "mofu v1.webp", "bofu v1.webp"]);
   const group = (name) => assets.filter((asset) => {
     const fileName = asset.src?.split("/").pop()?.toLowerCase();
     return asset.group === name && !hiddenCampaigns.has(fileName);

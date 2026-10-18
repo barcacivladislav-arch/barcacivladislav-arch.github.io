@@ -59,7 +59,7 @@
     ],
     bioc: [["5.", "6."], ["14.", "15."], ["18.", "19."]]
   };
-  const authoredBehanceProjects = new Set(["ark-capital", "ark-development", "bioc", "comod", "coreleaf", "emma-red", "intergasses", "like-coffee", "snus"]);
+  const authoredBehanceProjects = new Set(["ark-capital", "ark-development", "bioc", "comod", "coreleaf", "elite-homes", "emma-red", "intergasses", "like-coffee", "snus"]);
   const renderBehanceSequence = (gallery, assets, key) => {
     mediaComponents.renderBehanceComposition(gallery, assets, key, {
       root,
@@ -96,8 +96,10 @@
     "herbaris-summer-middle": [/Middle Funnel\//i],
     "herbaris-summer-bottom": [/Bottom Funnel\/1080x1080\/Artboard 12 copy 29/i, /Bottom Funnel\/1080x1080\/Artboard 4 copy 14/i, /Bottom Funnel\/1080x1080\/Artboard 4 copy 17/i]
   };
+  // The authored project cover is part of the shared project template.
+  // Generated galleries replace legacy board stacks only; they never remove the cover.
   if (!document.body.classList.contains("snus-case")) {
-    document.querySelectorAll('.case-overview, .board-stack').forEach((legacyOverview) => legacyOverview.remove());
+    document.querySelectorAll('.board-stack').forEach((legacyStack) => legacyStack.remove());
   }
   const labelFromPath = (value) => value.replace(/\\/g, "/").split("/").slice(-2, -1)[0]?.replace(/[-_]/g, " ") || "Selected work";
   const familyFromPath = (asset) => {
@@ -137,6 +139,25 @@
     return head;
   };
   const renderWebsitePairs = (gallery, assets) => {
+    if (projectSlug === "elite-homes") {
+      const byPath = (path) => assets.find((asset) => (asset.source || "").replace(/\\/g, "/").toLowerCase() === `Elite Homes/website/${path}`.toLowerCase());
+      // Pair complete pages deliberately. Export width does not identify the
+      // device: several supplied mobile screens are wider than 1000 pixels.
+      const pages = [
+        { label: "Home", desktop: byPath("Home Page/Desktop.jpg"), mobile: byPath("Home Page/Mobile Nav Bar.jpg") },
+        { label: "Listings", desktop: byPath("Listings Page/Desktop.jpg"), mobile: byPath("Listings Page/Mobile.jpg") },
+        { label: "Apartment Details", desktop: byPath("Apartment Details Page/Desktop.jpg"), mobile: byPath("Apartment Details Page/Mobile.jpg") },
+        { label: "Review Your Trip", desktop: byPath("Review Your Trip/Desktop.jpg"), mobile: byPath("Review Your Trip/Mobile.jpg") },
+        { label: "Confirm and Pay", desktop: byPath("Confirm and Pay/Desktop.jpg"), mobile: byPath("Confirm and Pay/Mobile.jpg") },
+        { label: "Thank You", desktop: byPath("Thank You/Desktop.jpg"), mobile: byPath("Thank You/Mobile.jpg") },
+        { label: "Home · Taskbar Variant", mobile: byPath("Home Page/Mobile taskbar.jpg") },
+        { label: "Listings · Mobile Variant", mobile: byPath("Listings Page/Mobile-1.jpg") },
+        { label: "Apartment Details · Top Bar Variant", desktop: byPath("Apartment Details Page/Desktop (top bar apartment details).jpg") },
+        { label: "Apartment Details · Taskbar Variant", mobile: byPath("Apartment Details Page/Mobile (bottom task bar).jpg") }
+      ].filter((page) => page.desktop || page.mobile);
+      mediaComponents.renderWebsiteViewer(gallery, assets, { root, pages });
+      return;
+    }
     if (projectSlug === "intergasses") {
       const byPath = (pattern) => assets.find((asset) => pattern.test((asset.source || "").replace(/\\/g, "/")));
       const pages = [
@@ -220,12 +241,6 @@
         return response.json();
       });
   manifestRequest.then((manifest) => {
-    if (!document.querySelector('link[href*="project.css"]')) {
-      const stylesheet = document.createElement("link");
-      stylesheet.rel = "stylesheet";
-      stylesheet.href = `${root}assets/css/project.css`;
-      document.head.append(stylesheet);
-    }
     document.querySelectorAll("[data-asset-group], [data-gallery], .compact-case .asset-grid").forEach((gallery) => {
       const galleryKey = gallery.dataset.gallery || projectSlug;
       const limit = Number(gallery.dataset.assetLimit || galleryLimits[galleryKey] || Infinity);

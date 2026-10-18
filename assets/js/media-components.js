@@ -4,6 +4,105 @@
     return name.replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim() || "Selected work";
   };
 
+  const slug = (value = "") => String(value).normalize("NFKD").replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 64) || "work";
+  const fingerprint = (value = "") => {
+    let hash = 2166136261;
+    for (const character of String(value)) hash = Math.imul(hash ^ character.charCodeAt(0), 16777619);
+    return (hash >>> 0).toString(36);
+  };
+  const assetKey = (asset) => fingerprint(asset.src || asset.source || asset.canonicalHash || "");
+  const genericTitle = (value = "") => /^(?:frame(?:\s*id)?\s*\d+|background\s*\+?\s*shadow(?:[\s-]*\d+)?|image\s*\d*|untitled(?:\s*\d+)?)$/i.test(value.trim());
+  // Presentation labels are separate from immutable filenames and inventory data.
+  const displayTitle = (asset, index = 0, family = "") => {
+    let title = String(asset.displayTitle || asset.alt || textFromPath(asset.source || asset.src))
+      .replace(/\s+[—–-]\s+Newsletters?.*$/i, "").trim();
+    title = title.replace(/\bBoundle\b/gi, "Bundle").replace(/\bLast\s*Chnace\b/gi, "Last chance")
+      .replace(/\bFire\s*Day\s*Lounch\b/gi, "Launch email");
+    if (!title || genericTitle(title)) {
+      const context = String(family || "Newsletter").replace(/\bAll Issues\b/i, "Newsletter");
+      return `${context} · issue ${String(index + 1).padStart(2, "0")}`;
+    }
+    return title;
+  };
+  const accessibleNewsletterTitle = (asset, index, family) => {
+    const original = String(asset.alt || "");
+    const firstPart = original.replace(/\s+[—–-]\s+Newsletters?.*$/i, "").trim();
+    return original && !genericTitle(firstPart) ? original : `${displayTitle(asset, index, family)} newsletter`;
+  };
+  const componentKey = (gallery, kind, assets = []) => {
+    if (!gallery.id) {
+      const context = gallery.dataset.primaryCategory || gallery.dataset.gallery || gallery.getAttribute("aria-label") || kind;
+      gallery.id = `media-${slug(context)}-${fingerprint(`${kind}:${assets.map((asset) => asset.src || asset.source).join("|")}`)}`;
+    }
+    gallery.dataset.mediaComponentKey = gallery.id;
+    return gallery.id;
+  };
+  const selectionURL = (key, kind, value) => {
+    const url = new URL(location.href);
+    url.searchParams.set("component", key);
+    url.searchParams.delete("page");
+    url.searchParams.delete("issue");
+    url.searchParams.set(kind, value);
+    url.hash = key;
+    return url;
+  };
+  const writeSelection = (key, kind, value) => {
+    const url = selectionURL(key, kind, value);
+    if (url.href !== location.href) history.replaceState(history.state, "", url);
+    return url.href;
+  };
+  const selectionReaders = new Map();
+  const restoreSelections = (initial = false) => {
+    const url = new URL(location.href);
+    selectionReaders.forEach(({ gallery, restore }, key) => {
+      if (!gallery.isConnected) return;
+      restore(url.searchParams.get("component") === key ? url : null, initial);
+    });
+  };
+  window.addEventListener("popstate", () => restoreSelections(false));
+  const registerSelection = (gallery, key, restore) => {
+    selectionReaders.set(key, { gallery, restore });
+    requestAnimationFrame(() => {
+      if (gallery.isConnected && new URL(location.href).searchParams.get("component") === key) restore(new URL(location.href), true);
+    });
+  };
+  const addShareControl = (container, getURL, label = "Copy link") => {
+    const group = document.createElement("div");
+    group.className = "media-share";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "media-share__button";
+    button.textContent = label;
+    const status = document.createElement("span");
+    status.className = "media-share__status";
+    status.setAttribute("role", "status");
+    status.setAttribute("aria-live", "polite");
+    button.addEventListener("click", async () => {
+      const url = getURL();
+      group.querySelector("input")?.remove();
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+        await navigator.clipboard.writeText(url);
+        status.textContent = "Link copied";
+      } catch {
+        status.textContent = "Select and copy this link:";
+        const field = document.createElement("input");
+        field.className = "media-share__fallback";
+        field.readOnly = true;
+        field.value = url;
+        field.setAttribute("aria-label", "Shareable media link");
+        group.append(field);
+        field.focus();
+        field.select();
+      }
+    });
+    group.append(button, status);
+    container.append(group);
+    return group;
+  };
+  const headingLevelFor = (gallery) => gallery.closest("[data-primary-category]") ? 4 : 3;
+
   const ratioClass = (asset) => {
     const ratio = asset.aspectRatio || (asset.width && asset.height ? asset.width / asset.height : 1);
     return ratio > 1.25 ? "landscape" : ratio < .8 ? "portrait" : "square";
@@ -14,7 +113,7 @@
     const ratio = asset.aspectRatio || (asset.width && asset.height ? asset.width / asset.height : 1);
     figure.className = `project-media project-media--${asset.kind} project-media--${ratioClass(asset)}`;
     figure.style.setProperty("--asset-ratio", String(Math.max(.12, Math.min(4, ratio))));
-    figure.dataset.fit = asset.fit || "contain";
+    figure.dataset.fit = "contain";
     figure.dataset.role = asset.role || "media";
     figure.dataset.category = asset.category || asset.group || "project";
     if (asset.canonicalHash) figure.dataset.assetHash = asset.canonicalHash.slice(0, 12);
@@ -22,6 +121,8 @@
     if (asset.kind === "video") {
       const video = document.createElement("video");
       video.src = root + asset.src;
+      if (asset.width) video.width = asset.width;
+      if (asset.height) video.height = asset.height;
       video.muted = true;
       video.loop = true;
       video.playsInline = true;
@@ -33,15 +134,16 @@
       figure.append(video);
     } else {
       const image = document.createElement("img");
-      image.src = root + asset.src;
+      image.src = window.PortfolioArtworkMotion?.prepare(image, root + asset.src) || root + asset.src;
       if (asset.width) image.width = asset.width;
       if (asset.height) image.height = asset.height;
       const eager = options.eager || asset.loadingPriority === "high" || index < 2;
       image.loading = eager ? "eager" : "lazy";
       if (asset.loadingPriority === "high") image.fetchPriority = "high";
       image.decoding = "async";
-      image.alt = asset.alt || textFromPath(asset.source);
-      image.style.objectFit = asset.fit || "contain";
+      image.alt = options.displayAlt || asset.alt || textFromPath(asset.source);
+      // Shared presentation owns fit: natural media defaults to contain, while
+      // authored paired boards can use their original equal-height crop.
       image.style.objectPosition = asset.focalPosition || "50% 50%";
       if (options.lightbox !== false) image.dataset.lightbox = "true";
       figure.append(image);
@@ -49,11 +151,11 @@
     return figure;
   };
 
-  const makeHead = (title, note, description = "") => {
+  const makeHead = (title, note, description = "", level = 3) => {
     const head = document.createElement("div");
     head.className = "media-component__head";
     const copy = document.createElement("div");
-    const heading = document.createElement("h4");
+    const heading = document.createElement(`h${Math.max(2, Math.min(6, level))}`);
     heading.textContent = title;
     copy.append(heading);
     if (description) {
@@ -70,17 +172,43 @@
     return head;
   };
 
-  const createTabs = (items, onSelect, label, duration = 8000) => {
+  let tabSetCount = 0;
+  const createTabs = (items, onSelect, label, duration = 8000, panel = null) => {
     const shell = document.createElement("div");
     shell.className = "media-tabs-shell";
     const tabs = document.createElement("div");
     tabs.className = "media-tabs";
     tabs.setAttribute("role", "tablist");
     tabs.setAttribute("aria-label", label);
+    const hasVariants = items.some((item) => item.variant || /\bvariant\b/i.test(item.label));
+    const tabGroups = new Map();
+    if (hasVariants) {
+      shell.classList.add("media-tabs-shell--grouped");
+      tabs.classList.add("media-tabs--grouped");
+      [["primary", "Primary pages"], ["variants", "Variants"]].forEach(([key, title]) => {
+        const group = document.createElement("div");
+        group.className = `media-tabs__group media-tabs__group--${key}`;
+        group.setAttribute("role", "presentation");
+        const groupLabel = document.createElement("span");
+        groupLabel.className = "media-tabs__group-label";
+        groupLabel.textContent = title;
+        group.append(groupLabel);
+        tabs.append(group);
+        tabGroups.set(key, group);
+      });
+    }
     let activeIndex = 0;
     let timer = 0;
     let isVisible = true;
-    let isPaused = false;
+    let isPaused = true;
+    const tabSetId = `media-tabs-${++tabSetCount}`;
+    shell.dataset.paused = "true";
+    if (panel) {
+      panel.id = `${tabSetId}-panel`;
+      panel.setAttribute("role", "tabpanel");
+      panel.setAttribute("aria-labelledby", `${tabSetId}-0`);
+      panel.tabIndex = 0;
+    }
     const durationSeconds = Math.round(duration / 1000);
     shell.style.setProperty("--media-tab-duration", `${duration}ms`);
     const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -89,40 +217,30 @@
       stopRotation();
       if (reducedMotion || items.length < 2 || !isVisible || isPaused) return;
       timer = window.setInterval(() => {
-        activeIndex = (activeIndex + 1) % items.length;
-        buttons[activeIndex].click();
+        selectIndex((activeIndex + 1) % items.length, false);
       }, duration);
     };
     const buttons = items.map((item, index) => {
       const button = document.createElement("button");
       button.type = "button";
       button.setAttribute("role", "tab");
+      button.id = `${tabSetId}-${index}`;
+      if (panel) button.setAttribute("aria-controls", panel.id);
       button.setAttribute("aria-selected", String(index === 0));
       button.tabIndex = index === 0 ? 0 : -1;
       button.textContent = item.label;
-      const select = () => {
-        activeIndex = index;
-        buttons.forEach((candidate) => {
-          const active = candidate === button;
-          candidate.setAttribute("aria-selected", String(active));
-          candidate.tabIndex = active ? 0 : -1;
-        });
-        onSelect(item, index);
-        progressFill.style.animation = "none";
-        requestAnimationFrame(() => {
-          progressFill.style.animation = "";
-        });
-        startRotation();
-      };
-      button.addEventListener("click", select);
+      const variant = Boolean(item.variant || /\bvariant\b/i.test(item.label));
+      button.dataset.mediaVariant = String(variant);
+      button.addEventListener("click", () => selectIndex(index, true));
       button.addEventListener("keydown", (event) => {
-        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
         event.preventDefault();
-        const nextIndex = (index + (event.key === "ArrowLeft" ? -1 : 1) + items.length) % items.length;
+        const nextIndex = event.key === "Home" ? 0 : event.key === "End" ? items.length - 1
+          : (index + (event.key === "ArrowLeft" ? -1 : 1) + items.length) % items.length;
         buttons[nextIndex].focus();
-        buttons[nextIndex].click();
+        selectIndex(nextIndex, true);
       });
-      tabs.append(button);
+      (hasVariants ? tabGroups.get(variant ? "variants" : "primary") : tabs).append(button);
       return button;
     });
     const controls = document.createElement("div");
@@ -134,20 +252,38 @@
     const playPause = document.createElement("button");
     playPause.type = "button";
     playPause.className = "media-tabs__toggle";
-    playPause.textContent = reducedMotion ? "Play" : "Pause";
-    playPause.setAttribute("aria-label", reducedMotion ? `Play ${label.toLowerCase()}` : `Pause ${label.toLowerCase()}`);
+    playPause.textContent = "Play";
+    playPause.setAttribute("aria-label", `Play ${label.toLowerCase()}`);
+    playPause.setAttribute("aria-pressed", "false");
+    playPause.hidden = reducedMotion;
     const next = document.createElement("button");
     next.type = "button";
     next.textContent = "→";
     next.setAttribute("aria-label", `Next ${label.toLowerCase()}`);
     const timing = document.createElement("span");
     timing.className = "media-tabs__timing";
+    timing.hidden = reducedMotion;
     timing.setAttribute("aria-label", `Automatic selection time: ${durationSeconds} seconds`);
     timing.innerHTML = `<span class="media-tabs__time">${durationSeconds}s</span><span class="media-tabs__progress"><span></span></span>`;
     const progressFill = timing.querySelector(".media-tabs__progress span");
     controls.append(previous, playPause, next, timing);
     shell.append(tabs, controls);
-    const selectOffset = (offset) => buttons[(activeIndex + offset + buttons.length) % buttons.length].click();
+    const selectIndex = (index, userInitiated = false) => {
+      activeIndex = Math.max(0, Math.min(items.length - 1, index));
+      const button = buttons[activeIndex];
+      buttons.forEach((candidate) => {
+        const active = candidate === button;
+        candidate.setAttribute("aria-selected", String(active));
+        candidate.tabIndex = active ? 0 : -1;
+      });
+      onSelect(items[activeIndex], activeIndex, { userInitiated });
+      if (panel) panel.setAttribute("aria-labelledby", button.id);
+      progressFill.style.animation = "none";
+      requestAnimationFrame(() => { progressFill.style.animation = ""; });
+      startRotation();
+    };
+    shell.selectTab = (index) => selectIndex(index, false);
+    const selectOffset = (offset) => selectIndex((activeIndex + offset + buttons.length) % buttons.length, true);
     previous.addEventListener("click", () => selectOffset(-1));
     next.addEventListener("click", () => selectOffset(1));
     const pause = () => {
@@ -155,6 +291,7 @@
       shell.dataset.paused = "true";
       playPause.textContent = "Play";
       playPause.setAttribute("aria-label", `Play ${label.toLowerCase()}`);
+      playPause.setAttribute("aria-pressed", "false");
       stopRotation();
     };
     const resume = () => {
@@ -162,9 +299,15 @@
       delete shell.dataset.paused;
       playPause.textContent = "Pause";
       playPause.setAttribute("aria-label", `Pause ${label.toLowerCase()}`);
+      playPause.setAttribute("aria-pressed", "true");
       startRotation();
     };
     playPause.addEventListener("click", () => isPaused ? resume() : pause());
+    tabs.addEventListener("focusin", pause);
+    document.addEventListener("visibilitychange", () => {
+      isVisible = !document.hidden;
+      startRotation();
+    });
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(([entry]) => {
         isVisible = entry.isIntersecting;
@@ -181,12 +324,14 @@
     shell.className = "media-scroller";
     track.classList.add("media-scroller__track");
     track.tabIndex = 0;
+    track.setAttribute("role", "region");
     track.setAttribute("aria-label", label);
     const controls = document.createElement("div");
     controls.className = "media-scroller__controls";
     const cue = document.createElement("span");
     cue.className = "media-scroller__cue";
-    cue.textContent = "Scroll or use arrow keys";
+    cue.textContent = "";
+    track.setAttribute("aria-description", "Use the previous and next buttons, swipe, or focus this gallery and use the arrow keys.");
     const meter = document.createElement("span");
     meter.className = "media-scroller__meter";
     meter.setAttribute("role", "progressbar");
@@ -209,42 +354,64 @@
     const step = () => Math.max(240, track.clientWidth * .82);
     const update = () => {
       const max = Math.max(0, track.scrollWidth - track.clientWidth);
-      const value = max ? Math.round(track.scrollLeft / max * 100) : 100;
+      const value = max ? Math.max(0, Math.min(100, Math.round(track.scrollLeft / max * 100))) : 100;
       fill.style.width = `${value}%`;
       meter.setAttribute("aria-valuenow", String(value));
+      const items = [...track.children];
+      const origin = items[0]?.offsetLeft || 0;
+      const visible = items.map((item, index) => ({ index, start: item.offsetLeft - origin, width: item.offsetWidth }))
+        .filter((item) => item.start + item.width > track.scrollLeft + 2 && item.start < track.scrollLeft + track.clientWidth - 2);
+      const first = (visible[0]?.index || 0) + 1;
+      const last = (visible.at(-1)?.index ?? first - 1) + 1;
+      const range = first === last ? String(first) : `${first}–${last}`;
+      cue.textContent = `${range} / ${items.length} ${/newsletter/i.test(label) ? "issues" : "assets"}`;
+      shell.dataset.assetCount = String(items.length);
       previous.disabled = track.scrollLeft <= 2;
       next.disabled = track.scrollLeft >= max - 2;
       cue.hidden = max <= 2;
       controls.hidden = max <= 2;
     };
-    const move = (direction) => track.scrollBy({ left: direction * step(), behavior: "smooth" });
+    const move = (direction) => track.scrollBy({ left: direction * step(), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     previous.addEventListener("click", () => move(-1));
     next.addEventListener("click", () => move(1));
     track.addEventListener("keydown", (event) => {
-      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      if (event.target !== track) return;
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
       event.preventDefault();
-      move(event.key === "ArrowLeft" ? -1 : 1);
+      if (event.key === "Home" || event.key === "End") {
+        track.scrollTo({ left: event.key === "Home" ? 0 : track.scrollWidth, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      } else move(event.key === "ArrowLeft" ? -1 : 1);
     });
     track.addEventListener("scroll", update, { passive: true });
+    track.addEventListener("load", update, true);
     new ResizeObserver(update).observe(track);
     requestAnimationFrame(update);
     return shell;
   };
 
-  const isMobileScreen = (asset) => /mobile|390w|phone/i.test(asset.source || "") || (asset.width > 0 && asset.width < 1000);
+  const isMobileScreen = (asset) => {
+    if (asset.role === "desktop-screen") return false;
+    if (asset.role === "mobile-screen") return true;
+    return /mobile|390w|phone/i.test(asset.source || "") || (asset.width > 0 && asset.width < 1000);
+  };
   const sectionTitle = (asset) => {
     const parts = (asset.source || "").replace(/\\/g, "/").split("/");
     return (parts.at(-2) || "Website").replace(/[-_]/g, " ");
   };
 
   const labelCase = (value) => value.replace(/[-_]/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
-  const isBannerAsset = (asset) => /(?:^|[\\/\s_-])banners?(?:[\\/\s_.-]|$)|announcement|top[ -]?bar/i.test(`${asset.source || ""} ${asset.role || ""}`);
+  const isBannerAsset = (asset) => {
+    const source = (asset.source || asset.src || "").replace(/\\/g, "/");
+    if (/(?:^|\/)(?:website[ _-]+)?banners?(?:\/|$)/i.test(source)) return true;
+    if (asset.group === "website" && /^(?:desktop|mobile)-screen$/.test(asset.role || "")) return false;
+    return /(?:^|[\/\s_-])banners?(?:[\/\s_.-]|$)|announcement|top[ -]?bar/i.test(`${source} ${asset.role || ""}`);
+  };
 
   const renderWebsiteViewer = (gallery, assets, { root = "", pages = null } = {}) => {
     gallery.classList.add("website-viewer-library");
     const eligible = assets.filter((asset) => !isBannerAsset(asset));
     const families = pages?.length
-      ? pages.map((page) => ({ label: page.label, assets: [page.desktop, page.mobile].filter(Boolean), desktop: page.desktop, mobile: page.mobile })).filter((page) => page.assets.length)
+      ? pages.map((page) => ({ ...page, assets: [page.desktop, page.mobile].filter(Boolean) })).filter((page) => page.assets.length)
       : [...eligible.reduce((map, asset) => {
           const family = labelCase(sectionTitle(asset));
           if (!map.has(family)) map.set(family, []);
@@ -261,18 +428,26 @@
       if (section && section.querySelectorAll("[data-asset-group], [data-gallery], [data-commerce-experience]").length === 1) section.hidden = true;
       return;
     }
+    const key = componentKey(gallery, "website", families.flatMap((family) => family.assets));
+    families.forEach((family) => {
+      family.key = family.key || `${slug(family.label)}-${assetKey(family.assets[0])}`;
+      family.variant = Boolean(family.variant || /\bvariant\b/i.test(family.label));
+    });
+    let activeFamily = families[0];
     const stage = document.createElement("div");
     stage.className = "media-switcher__stage";
-    const renderFamily = ({ label: family, assets: familyAssets, desktop, mobile }) => {
+    const renderFamily = (familyGroup, index = 0, { userInitiated = false } = {}) => {
+      const { label: family, assets: familyAssets, desktop, mobile } = familyGroup;
+      activeFamily = familyGroup;
       stage.replaceChildren();
       const section = document.createElement("section");
       section.className = "website-viewer";
-      section.append(makeHead(family, "Desktop + mobile", "Scroll inside either screen to inspect the complete page."));
+      section.dataset.mediaPageKey = familyGroup.key;
       const desktops = desktop ? [desktop] : familyAssets.filter((asset) => !isMobileScreen(asset));
       const mobiles = mobile ? [mobile] : familyAssets.filter(isMobileScreen);
-      const count = desktops.length && mobiles.length
-        ? Math.min(desktops.length, mobiles.length)
-        : Math.max(desktops.length, mobiles.length, 1);
+      const devices = desktops.length && mobiles.length ? "Desktop + mobile" : mobiles.length ? "Mobile" : "Desktop";
+      section.append(makeHead(family, devices, "Scroll inside each screen to inspect the complete page.", headingLevelFor(gallery)));
+      const count = Math.max(desktops.length, mobiles.length, 1);
       const pairs = document.createElement("div");
       pairs.className = "website-viewer__pairs";
       for (let index = 0; index < count; index += 1) {
@@ -306,17 +481,21 @@
       }
       section.append(pairs);
       stage.append(section);
-      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        section.animate([
-          { opacity: .35, transform: "translateY(4px)" },
-          { opacity: 1, transform: "translateY(0)" }
-        ], { duration: 260, easing: "cubic-bezier(.2,.8,.2,1)" });
-      }
+      if (userInitiated) writeSelection(key, "page", familyGroup.key);
       document.dispatchEvent(new Event("portfolio:media-ready"));
     };
-    if (families.length > 1) gallery.append(createTabs(families, renderFamily, "Website pages", 12000));
+    const tabs = families.length > 1 ? createTabs(families, renderFamily, "Website pages", 12000, stage) : null;
+    if (tabs) gallery.append(tabs);
     gallery.append(stage);
+    addShareControl(gallery, () => writeSelection(key, "page", activeFamily.key), "Copy page link");
     renderFamily(families[0]);
+    registerSelection(gallery, key, (url, initial) => {
+      const index = url ? families.findIndex((family) => family.key === url.searchParams.get("page")) : -1;
+      if (index < 0) return;
+      if (tabs) tabs.selectTab(index);
+      else renderFamily(families[index]);
+      if (initial) gallery.scrollIntoView({ block: "start", behavior: "auto" });
+    });
   };
 
   const formatFor = (asset) => ratioClass(asset);
@@ -330,8 +509,9 @@
     return ["Campaign system", "Extend one campaign idea across the formats and placements it needs."];
   };
 
-  const renderAdvertisingSystem = (gallery, assets, { root = "", familyFromPath = sectionTitle, groups = null } = {}) => {
+  const renderAdvertisingSystem = (gallery, assets, { root = "", familyFromPath = sectionTitle, groups = null, expanded = false } = {}) => {
     gallery.classList.add("advertising-system");
+    gallery.classList.toggle("advertising-system--expanded", expanded);
     const families = groups?.filter((group) => group.assets?.length) || [...assets.reduce((map, asset) => {
       const family = familyFromPath(asset);
       if (!map.has(family)) map.set(family, []);
@@ -342,39 +522,51 @@
       gallery.hidden = true;
       return;
     }
+    const key = componentKey(gallery, "advertising", families.flatMap((family) => family.assets));
     const stage = document.createElement("div");
-    stage.className = "media-switcher__stage";
-    const renderFamily = (familyGroup) => {
-      stage.replaceChildren();
+    stage.className = `media-switcher__stage${expanded ? " media-family-stack" : ""}`;
+    const buildFamily = (familyGroup) => {
       const family = familyGroup.label;
       const familyAssets = familyGroup.assets;
       const [defaultPurpose, defaultExplanation] = objectiveFor(family);
       const section = document.createElement("section");
       section.className = "ad-category";
-      section.append(makeHead(familyGroup.title || family, familyGroup.purpose || defaultPurpose, familyGroup.copy || defaultExplanation));
+      section.id = `${key}-${slug(family)}-${assetKey(familyAssets[0])}`;
+      section.dataset.mediaFamilyKey = section.id;
+      section.dataset.mediaFamilyLabel = familyGroup.title || family;
+      section.dataset.mediaKind = "advertising";
+      section.dataset.assetCount = String(familyAssets.length);
+      section.setAttribute("aria-label", family);
+      const purpose = familyGroup.purpose || defaultPurpose;
+      const note = `${familyAssets.length} ${familyAssets.length === 1 ? "asset" : "assets"}${purpose === "Campaign system" ? "" : ` · ${purpose}`}`;
+      section.append(makeHead(familyGroup.title || family, note, familyGroup.copy ?? defaultExplanation, headingLevelFor(gallery)));
       ["landscape", "square", "portrait"].forEach((format) => {
         const items = familyAssets.filter((asset) => formatFor(asset) === format);
         if (!items.length) return;
         const group = document.createElement("div");
         group.className = `ad-format ad-format--${format}`;
-        const title = document.createElement("h5");
-        title.textContent = `${format} format`;
+        const title = document.createElement("p");
+        title.className = "media-format-label";
+        title.textContent = `${labelCase(format)} · ${items.length} ${items.length === 1 ? "asset" : "assets"}`;
         const track = document.createElement("div");
         track.className = "ad-track";
         items.forEach((asset, index) => track.append(createMedia(asset, index, root)));
         group.append(title, createScroller(track, `${family}, ${format} ads`));
         section.append(group);
       });
-      stage.append(section);
-      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        section.animate([
-          { opacity: .35, transform: "translateY(4px)" },
-          { opacity: 1, transform: "translateY(0)" }
-        ], { duration: 260, easing: "cubic-bezier(.2,.8,.2,1)" });
-      }
+      return section;
+    };
+    const renderFamily = (familyGroup) => {
+      stage.replaceChildren(buildFamily(familyGroup));
       document.dispatchEvent(new Event("portfolio:media-ready"));
     };
-    if (families.length > 1) gallery.append(createTabs(families, renderFamily, "Advertising categories", 12000));
+    if (expanded) {
+      stage.append(...families.map(buildFamily));
+      gallery.append(stage);
+      document.dispatchEvent(new Event("portfolio:media-ready"));
+      return;
+    }
+    if (families.length > 1) gallery.append(createTabs(families, renderFamily, "Advertising categories", 12000, stage));
     gallery.append(stage);
     renderFamily(families[0]);
   };
@@ -386,8 +578,9 @@
     return candidate && !/\.[a-z0-9]+$/i.test(candidate) ? labelCase(candidate) : "All Issues";
   };
 
-  const renderNewsletterLibrary = (gallery, assets, { root = "", groups = null } = {}) => {
+  const renderNewsletterLibrary = (gallery, assets, { root = "", groups = null, expanded = false, showIntro = true } = {}) => {
     gallery.classList.add("newsletter-library");
+    gallery.classList.toggle("newsletter-library--expanded", expanded);
     const inbox = gallery.closest(".campaign-inbox");
     inbox?.classList.add("campaign-inbox--shared");
     if (!inbox) gallery.classList.add("newsletter-library--standalone");
@@ -401,16 +594,40 @@
       gallery.hidden = true;
       return;
     }
+    const key = componentKey(gallery, "newsletters", families.flatMap((family) => family.assets));
+    if (expanded) {
+      families.forEach((family) => {
+        const section = document.createElement("section");
+        section.className = "newsletter-campaign";
+        section.id = `${key}-${slug(family.label)}-${assetKey(family.assets[0])}`;
+        section.dataset.mediaFamilyKey = section.id;
+        section.dataset.mediaFamilyLabel = family.title || family.label;
+        section.dataset.mediaKind = "newsletter";
+        section.dataset.assetCount = String(family.assets.length);
+        section.setAttribute("aria-label", family.label);
+        section.append(makeHead(family.title || family.label, `${family.assets.length} ${family.assets.length === 1 ? "newsletter" : "newsletters"}`, family.copy ?? "", headingLevelFor(gallery)));
+        const library = document.createElement("div");
+        library.className = "newsletter-campaign__library";
+        library.id = `${section.id}-issues`;
+        section.append(library);
+        gallery.append(section);
+        renderNewsletterLibrary(library, family.assets, { root, groups: [family], showIntro: false });
+      });
+      document.dispatchEvent(new Event("portfolio:media-ready"));
+      return;
+    }
     const grid = document.createElement("div");
     grid.className = "newsletter-library__grid";
     const scroller = createScroller(grid, "Newsletter issues");
     const dialog = document.createElement("dialog");
     dialog.className = "media-reader";
+    dialog.id = `newsletter-reader-${++tabSetCount}`;
     dialog.setAttribute("aria-label", "Newsletter reader");
     const header = document.createElement("div");
     header.className = "media-reader__head";
     const title = document.createElement("p");
     const progress = document.createElement("span");
+    progress.setAttribute("aria-live", "polite");
     const previous = document.createElement("button");
     previous.type = "button";
     previous.textContent = "←";
@@ -425,40 +642,49 @@
     const viewport = document.createElement("div");
     viewport.className = "media-reader__viewport";
     viewport.tabIndex = 0;
+    viewport.setAttribute("role", "region");
+    viewport.setAttribute("aria-label", "Expanded newsletter. Scroll to read the complete email.");
     header.append(title, progress, previous, next, close);
     dialog.append(header, viewport);
-    let intro = inbox?.querySelector(".inbox-head") || null;
-    if (!intro) {
-      intro = document.createElement("div");
-      intro.className = "inbox-head inbox-head--shared";
-      if (inbox) inbox.insertBefore(intro, inbox.firstChild);
-      else gallery.append(intro);
+    if (showIntro) {
+      let intro = inbox?.querySelector(".inbox-head") || null;
+      if (!intro) {
+        intro = document.createElement("div");
+        intro.className = "inbox-head inbox-head--shared";
+        if (inbox) inbox.insertBefore(intro, inbox.firstChild);
+        else gallery.append(intro);
+      }
+      intro.classList.add("inbox-head--shared");
+      let introTitle = intro.querySelector("h2, h3, h4, h5, h6");
+      if (!introTitle) {
+        introTitle = document.createElement(`h${headingLevelFor(gallery)}`);
+        intro.prepend(introTitle);
+      }
+      let introCopy = intro.querySelector("p");
+      if (!introCopy) {
+        introCopy = document.createElement("p");
+        intro.append(introCopy);
+      }
+      introTitle.textContent = "Campaign inbox.";
+      introCopy.textContent = "Scroll each email preview, or open it to read the complete newsletter.";
     }
-    intro.classList.add("inbox-head--shared");
-    let introTitle = intro.querySelector("h3");
-    if (!introTitle) {
-      introTitle = document.createElement("h3");
-      intro.prepend(introTitle);
-    }
-    let introCopy = intro.querySelector("p");
-    if (!introCopy) {
-      introCopy = document.createElement("p");
-      intro.append(introCopy);
-    }
-    introTitle.textContent = "Campaign inbox.";
-    introCopy.textContent = "Hover to follow each email at a calm pace, or scroll directly to inspect any part of it.";
-    if (families.length > 1) gallery.append(createTabs(families, renderGroup, "Newsletter campaigns", 16000));
+    const tabs = families.length > 1 ? createTabs(families, renderGroup, "Newsletter campaigns", 16000, scroller) : null;
+    if (tabs) gallery.append(tabs);
     gallery.append(scroller, dialog);
 
     let selected = 0;
+    let activeFamily = families[0];
     let activeAssets = families[0].assets;
     let buttons = [];
-    const open = (index) => {
+    let returnFocus = null;
+    const open = (index, userInitiated = true) => {
+      if (!dialog.open) returnFocus = document.activeElement;
       selected = (index + activeAssets.length) % activeAssets.length;
       const asset = activeAssets[selected];
-      title.textContent = asset.alt || textFromPath(asset.source);
+      title.textContent = displayTitle(asset, selected, activeFamily.title || activeFamily.label);
       progress.textContent = `${selected + 1} / ${activeAssets.length}`;
-      viewport.replaceChildren(createMedia(asset, 0, root, { lightbox: false, controls: true }));
+      viewport.replaceChildren(createMedia(asset, 0, root, { lightbox: false, controls: true, displayAlt: accessibleNewsletterTitle(asset, selected, activeFamily.title || activeFamily.label) }));
+      viewport.scrollTop = 0;
       buttons.forEach((button, buttonIndex) => {
         const isSelected = buttonIndex === selected;
         button.classList.toggle("is-selected", isSelected);
@@ -466,9 +692,12 @@
         button.setAttribute("aria-pressed", String(isSelected));
       });
       if (!dialog.open) dialog.showModal();
+      if (userInitiated) writeSelection(key, "issue", assetKey(asset));
       requestAnimationFrame(() => viewport.focus());
     };
+    addShareControl(header, () => writeSelection(key, "issue", assetKey(activeAssets[selected])), "Copy issue link");
     function renderGroup(group) {
+      activeFamily = group;
       activeAssets = group.assets;
       selected = 0;
       buttons = [];
@@ -477,18 +706,23 @@
       activeAssets.forEach((asset, index) => {
         const card = document.createElement("article");
         card.className = "newsletter-card";
+        card.dataset.mediaIssueKey = assetKey(asset);
+        card.dataset.mediaTitle = displayTitle(asset, index, group.title || group.label);
         const preview = document.createElement("span");
         preview.className = "newsletter-card__viewport";
         preview.tabIndex = 0;
         preview.setAttribute("role", "region");
-        preview.setAttribute("aria-label", `Scrollable preview: ${asset.alt || `Issue ${index + 1}`}`);
-        preview.append(createMedia(asset, index, root, { lightbox: false, controls: false, eager: index < 4 }));
+        preview.setAttribute("aria-label", `Scrollable preview: ${displayTitle(asset, index, group.title || group.label)}`);
+        preview.append(createMedia(asset, index, root, { lightbox: false, controls: false, eager: index < 4, displayAlt: accessibleNewsletterTitle(asset, index, group.title || group.label) }));
         const openButton = document.createElement("button");
         openButton.type = "button";
         openButton.className = "newsletter-card__open";
         openButton.setAttribute("aria-pressed", "false");
+        openButton.setAttribute("aria-haspopup", "dialog");
+        openButton.setAttribute("aria-controls", dialog.id);
+        openButton.setAttribute("aria-label", `Open expanded newsletter: ${displayTitle(asset, index, group.title || group.label)}`);
         const label = document.createElement("span");
-        label.textContent = (asset.alt || `Issue ${index + 1}`).replace(/\s+[—-]\s+Newsletters?.*$/i, "");
+        label.textContent = displayTitle(asset, index, group.title || group.label);
         const count = document.createElement("small");
         count.textContent = String(index + 1).padStart(2, "0");
         openButton.append(label, count);
@@ -511,36 +745,6 @@
           event.preventDefault();
           scrollPreview(direction);
         });
-        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          let animationFrame = 0;
-          let previousTime = 0;
-          const stopPreview = () => {
-            cancelAnimationFrame(animationFrame);
-            animationFrame = 0;
-            previousTime = 0;
-          };
-          const advancePreview = (time) => {
-            if (!previousTime) previousTime = time;
-            const elapsed = Math.min(40, time - previousTime);
-            previousTime = time;
-            const max = preview.scrollHeight - preview.clientHeight;
-            if (preview.scrollTop < max - 1) {
-              preview.scrollTop += elapsed * .032;
-              animationFrame = requestAnimationFrame(advancePreview);
-            } else {
-              stopPreview();
-            }
-          };
-          const startPreview = () => {
-            if (!animationFrame && preview.scrollHeight > preview.clientHeight) animationFrame = requestAnimationFrame(advancePreview);
-          };
-          card.addEventListener("pointerenter", startPreview);
-          card.addEventListener("pointerleave", stopPreview);
-          preview.addEventListener("focus", startPreview);
-          preview.addEventListener("blur", stopPreview);
-          preview.addEventListener("wheel", stopPreview, { passive: true });
-          preview.addEventListener("pointerdown", stopPreview);
-        }
         buttons.push(openButton);
         grid.append(card);
       });
@@ -551,14 +755,41 @@
     previous.addEventListener("click", () => open(selected - 1));
     next.addEventListener("click", () => open(selected + 1));
     close.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("close", () => {
+      if (dialog.open) return;
+      const url = new URL(location.href);
+      if (url.searchParams.get("component") === key && url.searchParams.has("issue")) {
+        url.searchParams.delete("component");
+        url.searchParams.delete("issue");
+        history.replaceState(history.state, "", url);
+      }
+      if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+    });
     dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
     dialog.addEventListener("keydown", (event) => {
+      if (event.target instanceof HTMLInputElement) return;
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
         event.preventDefault();
         open(selected + (event.key === "ArrowLeft" ? -1 : 1));
       }
     });
     renderGroup(families[0]);
+    registerSelection(gallery, key, (url, initial) => {
+      if (!url) {
+        if (dialog.open) dialog.close();
+        return;
+      }
+      const issue = url.searchParams.get("issue");
+      const groupIndex = families.findIndex((family) => family.assets.some((asset) => assetKey(asset) === issue));
+      if (groupIndex < 0) return;
+      const group = families[groupIndex];
+      if (activeFamily !== group) {
+        if (tabs) tabs.selectTab(groupIndex);
+        else renderGroup(group);
+      }
+      open(group.assets.findIndex((asset) => assetKey(asset) === issue), false);
+      if (initial) gallery.scrollIntoView({ block: "start", behavior: "auto" });
+    });
   };
 
   const layoutPlans = {
@@ -630,7 +861,7 @@
       let layout = plan[planIndex % plan.length];
       if (pairTokens) {
         rowAssets = pairTokens.map((token) => assets.find((candidate) => tokenFor(candidate).startsWith(token.toLowerCase()))).filter(Boolean);
-        layout = rowAssets.some((item) => item.kind === "video") ? "motion-pair" : "two-up";
+        layout = rowAssets.length === 3 ? "three-up" : rowAssets.some((item) => item.kind === "video") ? "motion-pair" : "two-up";
       } else {
         const count = slotCounts[layout] || 1;
         for (let offset = cursor; offset < assets.length && rowAssets.length < count; offset += 1) {
@@ -702,6 +933,8 @@
   };
 
   window.PortfolioMediaComponents = {
+    displayTitle,
+    restoreURLState: () => restoreSelections(false),
     createMedia,
     createScroller,
     makeHead,

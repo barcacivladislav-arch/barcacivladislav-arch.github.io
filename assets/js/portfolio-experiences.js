@@ -5,9 +5,11 @@
     if (asset.kind === "video" || /\.(mp4|webm)$/i.test(asset.src)) {
       const element = document.createElement("video");
       element.src = root() + asset.src;
+      if (asset.width) element.width = asset.width;
+      if (asset.height) element.height = asset.height;
       element.muted = true;
       element.loop = true;
-      element.autoplay = eager;
+      element.controls = true;
       element.playsInline = true;
       element.preload = eager ? "metadata" : "none";
       element.setAttribute("aria-label", fileName(asset).replace(/[-_]/g, " "));
@@ -26,15 +28,29 @@
     const host = document.createElement("div");
     host.className = className;
     host.setAttribute("role", "tablist");
+    host.setAttribute("aria-label", "Media categories");
     items.forEach((item, index) => {
       const button = document.createElement("button");
       button.type = "button";
       button.textContent = item.label;
       button.setAttribute("role", "tab");
       button.setAttribute("aria-selected", String(index === 0));
+      button.tabIndex = index === 0 ? 0 : -1;
       button.addEventListener("click", () => {
-        host.querySelectorAll("button").forEach((tab) => tab.setAttribute("aria-selected", String(tab === button)));
+        host.querySelectorAll("button").forEach((tab) => {
+          tab.setAttribute("aria-selected", String(tab === button));
+          tab.tabIndex = tab === button ? 0 : -1;
+        });
         select(item);
+      });
+      button.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        const buttons = [...host.querySelectorAll("button")];
+        const nextIndex = event.key === "Home" ? 0 : event.key === "End" ? buttons.length - 1
+          : (index + (event.key === "ArrowLeft" ? -1 : 1) + buttons.length) % buttons.length;
+        buttons[nextIndex].focus();
+        buttons[nextIndex].click();
       });
       host.append(button);
     });
@@ -49,10 +65,15 @@
     });
     track.addEventListener("pointermove", (event) => { if (active) track.scrollLeft = scroll - (event.clientX - start); });
     ["pointerup", "pointercancel"].forEach((name) => track.addEventListener(name, () => { active = false; }));
-    track.addEventListener("wheel", (event) => {
-      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX) || track.scrollWidth <= track.clientWidth) return;
-      event.preventDefault(); track.scrollLeft += event.deltaY;
-    }, { passive: false });
+    track.tabIndex = 0;
+    track.setAttribute("role", "region");
+    track.setAttribute("aria-label", "Scrollable media");
+    track.addEventListener("keydown", (event) => {
+      if (event.target !== track || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+      event.preventDefault();
+      track.scrollBy({ left: (event.key === "ArrowLeft" ? -1 : 1) * track.clientWidth * .8,
+        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    });
   };
   const reel = (host, groups) => {
     const shared = window.PortfolioMediaComponents;

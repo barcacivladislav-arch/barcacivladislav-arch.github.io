@@ -1,28 +1,17 @@
-# Vladislav Barcaci — portfolio site
+# Vladislav Barcaci — Portfolio
 
-This folder is ready to use as the root of a GitHub Pages repository. It is a static site with no build step.
+Live website: https://barcacivladislav-arch.github.io/
 
-## Publish
+Home, About, Expertise and eighteen complete project experiences, with the original project artwork, campaign groups, newsletter readers and desktop/mobile website previews.
 
-1. Upload every file and folder here to the root of a GitHub repository.
-2. In GitHub, open **Settings → Pages**.
-3. Choose **Deploy from a branch**, select `main` and `/ (root)`, then save.
-4. Keep the `.nojekyll` file in the repository root.
+## Previous version
 
-## Edit
+The complete website previously published here is preserved in the [`backup-before-editorial-2026-10-18`](https://github.com/barcacivladislav-arch/barcacivladislav-arch.github.io/tree/backup-before-editorial-2026-10-18) branch at commit `0a7f690c802cd6824952a499a48c36e9eea5395d`. It is a source backup, not a second live website. To restore it without rewriting history, copy that branch's tree into a new commit on `main` and push normally.
 
-- Main page: `index.html`
-- Every project page: `work/<project>/index.html`
-- About page: `about/index.html`
-- Design system: `assets/css/tokens.css`, `base.css`, `components.css`, `home.css`, `project.css`, and `assets/css/themes/`
-- Curated project manifests and media: `assets/portfolio`
-- Shared project renderer: `assets/js/project-assets.js`
-- Narrative and asset-order guide: `CONTENT-STRUCTURE.md`
+## Hosting and local preview
 
-The paths are relative, so the portfolio can be published on a user site or under a repository subpath.
+GitHub Pages publishes the `main` branch from the repository root. No build step or external runtime is required. Keep project media, fonts, manifests and nested directories intact.
 
-## Add future media
+Serve this directory with a static web server, for example `python -m http.server 8080`, then open http://localhost:8080/.
 
-Prepare new media inside the relevant folder under `assets/portfolio`, then update that project's `manifest.json`. Replacing an existing prepared file with the same filename updates it without changing the HTML.
-
-The current layouts are type-specific: campaigns use three or four pieces per row, newsletters use four (or five where the set benefits from it), and responsive websites pair a larger desktop view with its mobile counterpart.
+Portfolio content and artwork are retained for their credited authors and clients. Locally bundled third-party font and script licenses are included alongside their files. No general redistribution license is granted for the artwork.
