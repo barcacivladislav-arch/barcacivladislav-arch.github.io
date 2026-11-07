@@ -283,15 +283,6 @@
           "kind": "image"
         },
         {
-          "src": "assets/portfolio/sope/black-friday/ad-super-offer-banner-public.png",
-          "source": "Public Gift Stack",
-          "label": "Public Gift Stack",
-          "title": "Public Gift Stack",
-          "width": 1080,
-          "height": 1350,
-          "kind": "image"
-        },
-        {
           "src": "assets/portfolio/sope/black-friday/ad-super-offer-banner-2-early-access.png",
           "source": "Early access Gift Stack alternate",
           "label": "Early access Gift Stack alternate",

@@ -70,7 +70,7 @@
     update();
     return reader;
   };
-  fetch(root + folder + 'media.json?v=20261107-newsletters').then((response) => {
+  fetch(root + folder + 'media.json?v=20261107-gift-stack').then((response) => {
     if (!response.ok) throw new Error('Campaign inventory unavailable');
     return response.json();
   }).then(({website, groups, emails}) => {
