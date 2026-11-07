@@ -1,0 +1,656 @@
+{
+  "website": [
+    {
+      "label": "Closed-site countdown",
+      "desktop": {
+        "src": "assets/portfolio/sope/black-friday/closed-desktop.png",
+        "source": "Closed-site countdown — desktop",
+        "label": "Closed-site countdown — desktop",
+        "title": "Closed-site countdown — desktop",
+        "width": 1440,
+        "height": 900,
+        "kind": "image"
+      },
+      "mobile": {
+        "src": "assets/portfolio/sope/black-friday/closed-mobile.png",
+        "source": "Closed-site countdown — mobile",
+        "label": "Closed-site countdown — mobile",
+        "title": "Closed-site countdown — mobile",
+        "width": 390,
+        "height": 664,
+        "kind": "image"
+      }
+    },
+    {
+      "label": "Announcement bar",
+      "desktop": {
+        "src": "assets/portfolio/sope/black-friday/announcement.png",
+        "source": "Announcement bar — desktop",
+        "label": "Announcement bar — desktop",
+        "title": "Announcement bar — desktop",
+        "width": 1440,
+        "height": 36,
+        "kind": "image"
+      },
+      "mobile": {
+        "src": "assets/portfolio/sope/black-friday/announcement-mobile.png",
+        "source": "Announcement bar — mobile",
+        "label": "Announcement bar — mobile",
+        "title": "Announcement bar — mobile",
+        "width": 390,
+        "height": 32,
+        "kind": "image"
+      }
+    },
+    {
+      "label": "Gift side cart",
+      "desktop": {
+        "src": "assets/portfolio/sope/black-friday/kite-desktop.png",
+        "source": "Gift side cart — desktop",
+        "label": "Gift side cart — desktop",
+        "title": "Gift side cart — desktop",
+        "width": 720,
+        "height": 450,
+        "kind": "image"
+      },
+      "mobile": {
+        "src": "assets/portfolio/sope/black-friday/kite-mobile.png",
+        "source": "Gift side cart — mobile",
+        "label": "Gift side cart — mobile",
+        "title": "Gift side cart — mobile",
+        "width": 390,
+        "height": 844,
+        "kind": "image"
+      }
+    },
+    {
+      "label": "Collection strip",
+      "desktop": {
+        "src": "assets/portfolio/sope/black-friday/collection-desktop.png",
+        "source": "Collection strip — desktop",
+        "label": "Collection strip — desktop",
+        "title": "Collection strip — desktop",
+        "width": 1440,
+        "height": 1688,
+        "kind": "image"
+      },
+      "mobile": {
+        "src": "assets/portfolio/sope/black-friday/collection-mobile.png",
+        "source": "Collection strip — mobile",
+        "label": "Collection strip — mobile",
+        "title": "Collection strip — mobile",
+        "width": 390,
+        "height": 1870,
+        "kind": "image"
+      }
+    },
+    {
+      "label": "Collection strip · phase 2",
+      "desktop": {
+        "src": "assets/portfolio/sope/black-friday/collection-later-desktop.png",
+        "source": "Collection strip · phase 2 — desktop",
+        "label": "Collection strip · phase 2 — desktop",
+        "title": "Collection strip · phase 2 — desktop",
+        "width": 1440,
+        "height": 1882,
+        "kind": "image"
+      },
+      "mobile": {
+        "src": "assets/portfolio/sope/black-friday/collection-later-mobile.png",
+        "source": "Collection strip · phase 2 — mobile",
+        "label": "Collection strip · phase 2 — mobile",
+        "title": "Collection strip · phase 2 — mobile",
+        "width": 390,
+        "height": 2199,
+        "kind": "image"
+      }
+    },
+    {
+      "label": "Product stickers",
+      "desktop": {
+        "src": "assets/portfolio/sope/black-friday/sticker-desktop.png",
+        "source": "Product stickers — desktop",
+        "label": "Product stickers — desktop",
+        "title": "Product stickers — desktop",
+        "width": 617,
+        "height": 615,
+        "kind": "image"
+      },
+      "mobile": {
+        "src": "assets/portfolio/sope/black-friday/sticker-mobile.png",
+        "source": "Product stickers — mobile",
+        "label": "Product stickers — mobile",
+        "title": "Product stickers — mobile",
+        "width": 390,
+        "height": 398,
+        "kind": "image"
+      }
+    },
+    {
+      "label": "Sign-up pop-up",
+      "desktop": {
+        "src": "assets/portfolio/sope/black-friday/popup-desktop.png",
+        "source": "Sign-up pop-up — desktop",
+        "label": "Sign-up pop-up — desktop",
+        "title": "Sign-up pop-up — desktop",
+        "width": 1440,
+        "height": 900,
+        "kind": "image"
+      },
+      "mobile": {
+        "src": "assets/portfolio/sope/black-friday/popup-mobile.png",
+        "source": "Sign-up pop-up — mobile",
+        "label": "Sign-up pop-up — mobile",
+        "title": "Sign-up pop-up — mobile",
+        "width": 390,
+        "height": 844,
+        "kind": "image"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "label": "Sale launch",
+      "title": "Sale launch",
+      "assets": [
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-bf-general.png",
+          "source": "Black Friday group creative",
+          "label": "Black Friday group creative",
+          "title": "Black Friday group creative",
+          "width": 1080,
+          "height": 1350,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-bf-general-banner.png",
+          "source": "Black Friday offer graphic",
+          "label": "Black Friday offer graphic",
+          "title": "Black Friday offer graphic",
+          "width": 1080,
+          "height": 1350,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-general.png",
+          "source": "SOPE bottle sale creative",
+          "label": "SOPE bottle sale creative",
+          "title": "SOPE bottle sale creative",
+          "width": 1080,
+          "height": 1920,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-31.png",
+          "source": "Restock your shelf",
+          "label": "Restock your shelf",
+          "title": "Restock your shelf",
+          "width": 1080,
+          "height": 1350,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-static1.png",
+          "source": "Plan your basket",
+          "label": "Plan your basket",
+          "title": "Plan your basket",
+          "width": 1080,
+          "height": 1920,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-statics2.png",
+          "source": "Black Friday ticket creative",
+          "label": "Black Friday ticket creative",
+          "title": "Black Friday ticket creative",
+          "width": 1080,
+          "height": 1920,
+          "kind": "image"
+        }
+      ]
+    },
+    {
+      "label": "Collections",
+      "title": "Collections",
+      "assets": [
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-collection-ads-body-butter.png",
+          "source": "Body butter collection",
+          "label": "Body butter collection",
+          "title": "Body butter collection",
+          "width": 1080,
+          "height": 1350,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-collection-ads-mists.png",
+          "source": "Mist collection",
+          "label": "Mist collection",
+          "title": "Mist collection",
+          "width": 1080,
+          "height": 1350,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-statics3.png",
+          "source": "The vanity, for less",
+          "label": "The vanity, for less",
+          "title": "The vanity, for less",
+          "width": 1080,
+          "height": 1920,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-statics5.png",
+          "source": "Pink ribbon product creative",
+          "label": "Pink ribbon product creative",
+          "title": "Pink ribbon product creative",
+          "width": 1080,
+          "height": 1350,
+          "kind": "image"
+        }
+      ]
+    },
+    {
+      "label": "Gift Stack",
+      "title": "Gift Stack",
+      "assets": [
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-38.png",
+          "source": "Early access offer graphic",
+          "label": "Early access offer graphic",
+          "title": "Early access offer graphic",
+          "width": 1080,
+          "height": 1350,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-33.png",
+          "source": "Early access gift tiers",
+          "label": "Early access gift tiers",
+          "title": "Early access gift tiers",
+          "width": 1080,
+          "height": 1920,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-super-offer-banner-early-access.png",
+          "source": "Gift Stack early access",
+          "label": "Gift Stack early access",
+          "title": "Gift Stack early access",
+          "width": 1080,
+          "height": 1350,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-super-offer-banner-public.png",
+          "source": "Public Gift Stack",
+          "label": "Public Gift Stack",
+          "title": "Public Gift Stack",
+          "width": 1080,
+          "height": 1350,
+          "kind": "image"
+        },
+        {
+          "src": "assets/portfolio/sope/black-friday/ad-super-offer-banner-2-early-access.png",
+          "source": "Early access Gift Stack alternate",
+          "label": "Early access Gift Stack alternate",
+          "title": "Early access Gift Stack alternate",
+          "width": 1080,
+          "height": 1350,
+          "kind": "image"
+        }
+      ]
+    }
+  ],
+  "emails": [
+    {
+      "file": "email-1.png",
+      "title": "01 · You hear first",
+      "width": 600,
+      "height": 721,
+      "designHeight": 721,
+      "motion": [],
+      "slices": []
+    },
+    {
+      "file": "email-2.png",
+      "title": "02 · The site is closed",
+      "width": 600,
+      "height": 894,
+      "designHeight": 894,
+      "motion": [
+        {
+          "file": "sope-bf-email2-closed-page-A-504x284.gif",
+          "alt": "Animated preview of the closed-site countdown",
+          "x": 48,
+          "y": 409,
+          "width": 504,
+          "height": 284
+        }
+      ],
+      "slices": []
+    },
+    {
+      "file": "email-3.png",
+      "title": "03 · We’re live",
+      "width": 600,
+      "height": 878,
+      "designHeight": 878,
+      "motion": [],
+      "slices": []
+    },
+    {
+      "file": "email-4.png",
+      "title": "04 · The full offer",
+      "width": 386,
+      "height": 4096,
+      "designHeight": 6378.7002,
+      "motion": [
+        {
+          "file": "sope-bf-announcement-bar-1200x192.gif",
+          "alt": "Animated Black Friday offer bar",
+          "x": 0,
+          "y": 83,
+          "width": 600,
+          "height": 96
+        },
+        {
+          "file": "sope-bf-restock-rows-600x700.gif",
+          "alt": "Animated back-in-stock products",
+          "x": 0,
+          "y": 4194,
+          "width": 600,
+          "height": 700
+        }
+      ],
+      "slices": [
+        {
+          "file": "email-slices/email-4-01.png",
+          "width": 600,
+          "height": 83,
+          "node": "421:5669"
+        },
+        {
+          "file": "email-slices/email-4-02.png",
+          "width": 600,
+          "height": 96,
+          "node": "421:5670"
+        },
+        {
+          "file": "email-slices/email-4-03.png",
+          "width": 600,
+          "height": 76,
+          "node": "421:5671"
+        },
+        {
+          "file": "email-slices/email-4-04.png",
+          "width": 600,
+          "height": 813,
+          "node": "421:5672"
+        },
+        {
+          "file": "email-slices/email-4-05.png",
+          "width": 600,
+          "height": 558,
+          "node": "421:6878"
+        },
+        {
+          "file": "email-slices/email-4-06.png",
+          "width": 600,
+          "height": 1524,
+          "node": "421:5716"
+        },
+        {
+          "file": "email-slices/email-4-07.png",
+          "width": 600,
+          "height": 362,
+          "node": "421:5729"
+        },
+        {
+          "file": "email-slices/email-4-08.png",
+          "width": 600,
+          "height": 682,
+          "node": "421:5754"
+        },
+        {
+          "file": "email-slices/email-4-09.png",
+          "width": 600,
+          "height": 1370,
+          "node": "421:5763"
+        },
+        {
+          "file": "email-slices/email-4-10.png",
+          "width": 600,
+          "height": 498,
+          "node": "421:5885"
+        },
+        {
+          "file": "email-slices/email-4-11.png",
+          "width": 600,
+          "height": 84,
+          "node": "421:5781"
+        },
+        {
+          "file": "email-slices/email-4-12.png",
+          "width": 600,
+          "height": 71,
+          "node": "421:5782"
+        },
+        {
+          "file": "email-slices/email-4-13.png",
+          "width": 600,
+          "height": 162,
+          "node": "421:5784"
+        }
+      ]
+    },
+    {
+      "file": "email-6.png",
+      "title": "06 · Selling out fast",
+      "width": 317,
+      "height": 4096,
+      "designHeight": 7776.7002,
+      "motion": [
+        {
+          "file": "sope-bf-announcement-bar-1200x192.gif",
+          "alt": "Animated Black Friday offer bar",
+          "x": 0,
+          "y": 83,
+          "width": 600,
+          "height": 96
+        },
+        {
+          "file": "sope-bf-bestsellers-rows-600x700.gif",
+          "alt": "Animated best sellers",
+          "x": 0,
+          "y": 255,
+          "width": 600,
+          "height": 700
+        },
+        {
+          "file": "sope-bf-restock-rows-600x700.gif",
+          "alt": "Animated back-in-stock products",
+          "x": 0,
+          "y": 2508,
+          "width": 600,
+          "height": 700
+        },
+        {
+          "file": "sope-bf-shower-rows-600x700.gif",
+          "alt": "Animated shower products",
+          "x": 0,
+          "y": 5191,
+          "width": 600,
+          "height": 700
+        }
+      ],
+      "slices": [
+        {
+          "file": "email-slices/email-6-01.png",
+          "width": 600,
+          "height": 83,
+          "node": "562:16373"
+        },
+        {
+          "file": "email-slices/email-6-02.png",
+          "width": 600,
+          "height": 96,
+          "node": "562:16374"
+        },
+        {
+          "file": "email-slices/email-6-03.png",
+          "width": 600,
+          "height": 76,
+          "node": "562:16375"
+        },
+        {
+          "file": "email-slices/email-6-04.png",
+          "width": 600,
+          "height": 2253,
+          "node": "562:16376"
+        },
+        {
+          "file": "email-slices/email-6-05.png",
+          "width": 600,
+          "height": 2683,
+          "node": "562:16392"
+        },
+        {
+          "file": "email-slices/email-6-06.png",
+          "width": 600,
+          "height": 1818,
+          "node": "562:16425"
+        },
+        {
+          "file": "email-slices/email-6-07.png",
+          "width": 600,
+          "height": 444,
+          "node": "562:16438"
+        },
+        {
+          "file": "email-slices/email-6-08.png",
+          "width": 600,
+          "height": 100,
+          "node": "562:16472"
+        },
+        {
+          "file": "email-slices/email-6-09.png",
+          "width": 600,
+          "height": 62,
+          "node": "562:16473"
+        },
+        {
+          "file": "email-slices/email-6-10.png",
+          "width": 600,
+          "height": 162,
+          "node": "562:16474"
+        }
+      ]
+    },
+    {
+      "file": "email-flow-1.png",
+      "title": "Sign-up flow 01 · Your link",
+      "width": 600,
+      "height": 1055,
+      "designHeight": 1055,
+      "motion": [],
+      "slices": []
+    },
+    {
+      "file": "email-flow-2.png",
+      "title": "Sign-up flow 02 · Still thinking?",
+      "width": 430,
+      "height": 4096,
+      "designHeight": 5724.7002,
+      "motion": [
+        {
+          "file": "sope-bf-flow2-hero-sticker-peel.gif",
+          "alt": "Your gifts are still waiting — animated sticker peel",
+          "x": 0,
+          "y": 159,
+          "width": 600,
+          "height": 447
+        },
+        {
+          "file": "sope-bf-restock-rows-600x700.gif",
+          "alt": "Animated back-in-stock products",
+          "x": 0,
+          "y": 2130,
+          "width": 600,
+          "height": 700
+        },
+        {
+          "file": "sope-bf-free-gifts-600x258.gif",
+          "alt": "Animated free-gift tiers",
+          "x": 0,
+          "y": 4966,
+          "width": 600,
+          "height": 258
+        }
+      ],
+      "slices": [
+        {
+          "file": "email-slices/email-flow-2-01.png",
+          "width": 600,
+          "height": 83,
+          "node": "562:17811"
+        },
+        {
+          "file": "email-slices/email-flow-2-02.png",
+          "width": 600,
+          "height": 76,
+          "node": "562:17812"
+        },
+        {
+          "file": "email-slices/email-flow-2-03.png",
+          "width": 600,
+          "height": 447,
+          "node": "562:17813"
+        },
+        {
+          "file": "email-slices/email-flow-2-04.png",
+          "width": 600,
+          "height": 1524,
+          "node": "562:17815"
+        },
+        {
+          "file": "email-slices/email-flow-2-05.png",
+          "width": 600,
+          "height": 2683,
+          "node": "562:17830"
+        },
+        {
+          "file": "email-slices/email-flow-2-06.png",
+          "width": 600,
+          "height": 567,
+          "node": "562:17863"
+        },
+        {
+          "file": "email-slices/email-flow-2-07.png",
+          "width": 600,
+          "height": 28,
+          "node": "562:17871"
+        },
+        {
+          "file": "email-slices/email-flow-2-08.png",
+          "width": 600,
+          "height": 84,
+          "node": "562:17872"
+        },
+        {
+          "file": "email-slices/email-flow-2-09.png",
+          "width": 600,
+          "height": 71,
+          "node": "562:17873"
+        },
+        {
+          "file": "email-slices/email-flow-2-10.png",
+          "width": 600,
+          "height": 162,
+          "node": "562:17875"
+        }
+      ]
+    }
+  ]
+}

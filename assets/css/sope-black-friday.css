@@ -1,0 +1,25 @@
+.sope-bf { border-block: var(--rule-muted); }
+.sope-bf-intro { display: grid; grid-template-columns: 5fr 7fr; gap: 24px 72px; }
+.sope-bf-intro p, .sope-bf-part > p { max-width: 70ch; }
+.sope-bf-part { margin-block-start: var(--space-panel); }
+.sope-bf-part > p { margin-block: 12px 24px; }
+.sope-bf-part > .sope-bf-note { font-size: 14px; color: var(--muted); }
+.sope-bf-disclosure { border-top: var(--rule-muted); margin-top: 24px; }
+.sope-bf-disclosure > summary { cursor: pointer; padding: 16px 0; }
+.sope-bf-part, .sope-bf-disclosure > summary { scroll-margin-top: var(--project-contents-offset, 90px); }
+.sope-bf-disclosure > summary span { margin-inline-start: 12px; color: var(--muted); font-size: 14px; }
+.sope-bf-loops { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); align-items: start; gap: 24px; }
+.sope-bf video { display: block; width: 100%; height: auto; background: var(--ink); }
+.sope-bf .sope-bf-reel { max-width: 420px; aspect-ratio: 9/16; }
+.sope-bf figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
+.sope-bf-reader { width: min(100%, 600px); margin-inline: auto; }
+.sope-bf-reader button { margin-block: 12px; padding-inline: 16px; min-height: 44px; }
+.sope-bf-reader__art { position: relative; }
+.sope-bf-reader__art img { display: block; width: 100%; height: auto; max-height: none; }
+.sope-bf-reader__art img.sope-bf-reader__motion { position: absolute; height: auto; }
+.sope-bf summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+@media (max-width: 720px) {
+  .sope-bf-intro { grid-template-columns: 1fr; gap: 16px; }
+  .sope-bf-loops { grid-template-columns: 1fr; }
+  .sope-bf-loops figure:last-child { max-width: 280px; }
+}

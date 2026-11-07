@@ -578,7 +578,7 @@
     return candidate && !/\.[a-z0-9]+$/i.test(candidate) ? labelCase(candidate) : "All Issues";
   };
 
-  const renderNewsletterLibrary = (gallery, assets, { root = "", groups = null, expanded = false, showIntro = true } = {}) => {
+  const renderNewsletterLibrary = (gallery, assets, { root = "", groups = null, expanded = false, showIntro = true, renderIssue = createMedia } = {}) => {
     gallery.classList.add("newsletter-library");
     gallery.classList.toggle("newsletter-library--expanded", expanded);
     const inbox = gallery.closest(".campaign-inbox");
@@ -611,7 +611,7 @@
         library.id = `${section.id}-issues`;
         section.append(library);
         gallery.append(section);
-        renderNewsletterLibrary(library, family.assets, { root, groups: [family], showIntro: false });
+        renderNewsletterLibrary(library, family.assets, { root, groups: [family], showIntro: false, renderIssue });
       });
       document.dispatchEvent(new Event("portfolio:media-ready"));
       return;
@@ -683,7 +683,7 @@
       const asset = activeAssets[selected];
       title.textContent = displayTitle(asset, selected, activeFamily.title || activeFamily.label);
       progress.textContent = `${selected + 1} / ${activeAssets.length}`;
-      viewport.replaceChildren(createMedia(asset, 0, root, { lightbox: false, controls: true, displayAlt: accessibleNewsletterTitle(asset, selected, activeFamily.title || activeFamily.label) }));
+      viewport.replaceChildren(renderIssue(asset, 0, root, { lightbox: false, controls: true, displayAlt: accessibleNewsletterTitle(asset, selected, activeFamily.title || activeFamily.label) }));
       viewport.scrollTop = 0;
       buttons.forEach((button, buttonIndex) => {
         const isSelected = buttonIndex === selected;
@@ -713,7 +713,7 @@
         preview.tabIndex = 0;
         preview.setAttribute("role", "region");
         preview.setAttribute("aria-label", `Scrollable preview: ${displayTitle(asset, index, group.title || group.label)}`);
-        preview.append(createMedia(asset, index, root, { lightbox: false, controls: false, eager: index < 4, displayAlt: accessibleNewsletterTitle(asset, index, group.title || group.label) }));
+        preview.append(renderIssue(asset, index, root, { lightbox: false, controls: false, eager: index < 4, displayAlt: accessibleNewsletterTitle(asset, index, group.title || group.label) }));
         const openButton = document.createElement("button");
         openButton.type = "button";
         openButton.className = "newsletter-card__open";
@@ -757,6 +757,7 @@
     close.addEventListener("click", () => dialog.close());
     dialog.addEventListener("close", () => {
       if (dialog.open) return;
+      if (renderIssue !== createMedia) viewport.replaceChildren();
       const url = new URL(location.href);
       if (url.searchParams.get("component") === key && url.searchParams.has("issue")) {
         url.searchParams.delete("component");

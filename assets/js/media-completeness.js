@@ -396,7 +396,7 @@
     // Existing specialised readers stay primary; all their campaigns become visible together.
     for (const call of originalCalls) {
       if (handled.has(call.host) || !call.host?.isConnected) continue;
-      if (call.name === 'renderNewsletterLibrary') {
+      if (call.name === 'renderNewsletterLibrary' && !call.options?.renderIssue) {
         let assets = groupAssets('newsletters');
         if (slug === 'chariot') assets = uniqueAssets(project.assets.filter((asset) => call.assets.some((original) => original.group === asset.group)));
         if (slug === 'klintensiv') assets = assets.filter((asset) => /^klintensiv\/newsletters\//i.test(asset.source));
