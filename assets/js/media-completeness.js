@@ -300,10 +300,10 @@
     }
     if (slug === 'klintensiv') {
       const campaign = document.querySelector('[data-klintensiv-campaigns]');
-      const banners = document.querySelector('[data-klintensiv-banners]');
+      const spring = document.querySelector('[data-klintensiv-spring]');
+      const summer = document.querySelector('[data-klintensiv-summer]');
       const posters = document.querySelector('[data-klintensiv-posters]');
       const existing = lastCall(campaign, 'renderAdvertisingSystem')?.options?.groups || [];
-      const bannerGroups = lastCall(banners, 'renderAdvertisingSystem')?.options?.groups || [];
       const old = (label) => existing.find((group) => group.label === label) || { label, title: label, copy: '' };
       const sourceMatches = (pattern) => (asset) => pattern.test((asset.source || '').replace(/\\/g, '/'));
       const communication = groupAssets('campaign-system');
@@ -312,16 +312,16 @@
       if (campaign) {
         invocations.filter((call) => call.host === campaign).forEach((call) => { call.retired = true; });
         campaign.replaceChildren(); campaign.classList.remove('advertising-system', 'advertising-system--expanded'); campaign.classList.add('project-gallery--families');
-        const brandHost = primaryHost(campaign, 'branding', 'Klintensiv branding');
-        renderAds(brandHost, [{ ...old('Credibility'), label: 'Brand positioning', assets: groupAssets('brand-positioning') }], 'Branding');
-        const evergreenHost = primaryHost(campaign, 'evergreen', 'Klintensiv evergreen campaigns');
-        renderAds(evergreenHost, partition(evergreenAssets, [
-          { label: 'Professional communication', title: 'Professional communication', copy: '', match: sourceMatches(/\/Level 3-Ad Creatives\//i) },
-          { ...old('Categories'), match: (asset) => asset.group === 'category-campaign' },
-          { ...old('Mouthwash awareness'), match: (asset) => asset.group === 'mouthwash-campaign' && !/\/Bottom Funnel\//i.test(asset.source) },
-          { ...old('Mouthwash conversion'), match: (asset) => asset.group === 'mouthwash-campaign' },
-          { ...old('Objections'), match: sourceMatches(/\/Trust Crisis Based ads\//i) }
-        ]), 'Evergreen campaigns');
+        renderAds(campaign, [
+          { label: 'Earlier brand positioning', assets: groupAssets('brand-positioning') },
+          ...partition(evergreenAssets, [
+            { label: 'Professional communication', match: sourceMatches(/\/Level 3-Ad Creatives\//i) },
+            { ...old('Categories'), match: (asset) => asset.group === 'category-campaign' },
+            { ...old('Mouthwash awareness'), match: (asset) => asset.group === 'mouthwash-campaign' && !/\/Bottom Funnel\//i.test(asset.source) },
+            { ...old('Mouthwash conversion'), match: (asset) => asset.group === 'mouthwash-campaign' },
+            { ...old('Objections'), match: sourceMatches(/\/Trust Crisis Based ads\//i) }
+          ])
+        ], 'Evergreen campaigns');
         handled.add(campaign);
       }
       if (posters) {
@@ -334,28 +334,25 @@
         ]), 'Healthcare education');
         handled.add(posters);
       }
-      if (banners) {
-        invocations.filter((call) => call.host === banners).forEach((call) => { call.retired = true; });
-        banners.replaceChildren(); banners.classList.remove('advertising-system', 'advertising-system--expanded'); banners.classList.add('project-gallery--families');
+      if (spring) {
         const springAssets = uniqueAssets([...groupAssets('spring-campaign'), ...groupAssets('newsletters').filter(sourceMatches(/\/Spring Sale 2026\//i))]);
-        const springHost = primaryHost(banners, 'spring', 'Klintensiv Spring campaign');
-        const springMeta = bannerGroups.find((group) => group.label === 'Spring') || { label: 'Spring', title: 'Spring', copy: '' };
-        renderAds(springHost, partition(springAssets, [
-          { ...springMeta, label: 'Spring website banners', match: sourceMatches(/\/(?:General top funnel banners|Promotion page banner)\//i) },
+        renderAds(spring, partition(springAssets, [
+          { label: 'Storefront and kit banners', purpose: 'Storefront', copy: 'Desktop and mobile variants keep the launch and kit offers legible at different sizes.', match: sourceMatches(/\/(?:General top funnel banners|Promotion page banner)\//i) },
           { label: 'Announcement bars', title: 'Announcement bars', copy: '', match: sourceMatches(/\/Announcment Bar\//i) },
           { label: 'Stickers', title: 'Stickers', copy: '', match: sourceMatches(/\/Sticker\//i) },
           { label: 'Newsletter covers', title: 'Newsletter covers', copy: '', match: sourceMatches(/\/Newsletter cover-Last day\//i) }
         ]), 'Spring campaign');
-        const summerHost = primaryHost(banners, 'summer', 'Klintensiv Summer campaign');
-        const summerMeta = bannerGroups.find((group) => group.label === 'Summer') || { label: 'Summer', title: 'Summer', copy: '' };
-        renderAds(summerHost, partition(groupAssets('summer-campaign'), [
-          { ...old('Summer awareness'), match: sourceMatches(/\/Creative ads\/1\./i) },
-          { ...old('Summer collections'), match: sourceMatches(/\/Creative ads\/2\./i) },
-          { ...old('Summer conversion'), match: sourceMatches(/\/Creative ads\/level 4\./i) },
+        handled.add(spring);
+      }
+      if (summer) {
+        renderAds(summer, partition(groupAssets('summer-campaign'), [
+          { label: 'Launch and awareness', match: sourceMatches(/\/Creative ads\/1\./i) },
+          { label: 'Collection ads', match: sourceMatches(/\/Creative ads\/2\./i) },
+          { label: 'Product conversion', match: sourceMatches(/\/Creative ads\/level 4\./i) },
           { label: 'Catalog ads', title: 'Catalog ads', copy: '', match: sourceMatches(/\/Creative ads\/3\./i) },
-          { ...summerMeta, label: 'Summer website materials', match: sourceMatches(/\/Website Materials\//i) }
+          { label: 'Storefront banners', match: sourceMatches(/\/Website Materials\//i) }
         ]), 'Summer campaign');
-        handled.add(banners);
+        handled.add(summer);
       }
     }
     if (slug === 'capodopera') {
@@ -396,6 +393,7 @@
     // Existing specialised readers stay primary; all their campaigns become visible together.
     for (const call of originalCalls) {
       if (handled.has(call.host) || !call.host?.isConnected) continue;
+      if (call.host.hasAttribute('data-klint-new-ads') || call.host.hasAttribute('data-herbaris-bf-ads')) continue;
       if (call.name === 'renderNewsletterLibrary' && !call.options?.renderIssue) {
         let assets = groupAssets('newsletters');
         if (slug === 'chariot') assets = uniqueAssets(project.assets.filter((asset) => call.assets.some((original) => original.group === asset.group)));

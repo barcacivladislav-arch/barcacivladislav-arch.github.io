@@ -1,0 +1,33 @@
+.herbaris-bf-lead, .herbaris-bf-lead img { display: block; width: 100%; height: auto; }
+.herbaris-bf-index {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--grid-gap);
+  margin-block: var(--space-stack);
+}
+.herbaris-bf-index a {
+  display: grid;
+  padding-block: 12px 16px;
+  gap: 10px;
+  border-block-start: var(--rule);
+}
+.herbaris-bf-index a > span { font-size: var(--small); color: var(--muted); }
+.herbaris-bf-index strong {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font: 400 var(--subheading) / 1.12 var(--font-serif);
+}
+.herbaris-bf-part { margin-block-start: var(--space-panel); scroll-margin-top: var(--project-contents-offset, 90px); }
+.herbaris-bf-part > p { max-width: 67ch; margin-block: 12px var(--space-stack); }
+.herbaris-bf-site-group, .herbaris-bf-stickers { margin-block-start: var(--space-stack); }
+.herbaris-bf-site-group > h4 { margin-bottom: 16px; }
+.herbaris-bf-stickers figcaption { margin-top: 12px; font-size: var(--small); }
+.herbaris-bf-mail__art { position: relative; width: min(100%, 600px); margin-inline: auto; }
+.herbaris-bf-mail__art img { display: block; width: 100%; height: auto; max-height: none; }
+.herbaris-bf-mail__art .herbaris-bf-motion { position: absolute; inset: 0 auto auto 0; }
+.herbaris-bf-mail > button { min-height: 44px; margin-bottom: 12px; padding-inline: 12px; }
+.herbaris-bf-part > .artwork-motion-control { margin: 0 0 20px; }
+@media (max-width: 620px) {
+  .herbaris-bf-index { grid-template-columns: 1fr; gap: 0; }
+}

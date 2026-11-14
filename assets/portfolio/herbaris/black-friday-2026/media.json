@@ -1,0 +1,1154 @@
+{
+  "ads": [
+    {
+      "label": "Launch and awareness",
+      "purpose": "Top funnel",
+      "copy": "Introduce Black Friday and the gifts, then give Romeo’s selection its own route into the offer.",
+      "assets": [
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-01-1-91x1.webp",
+          "kind": "image",
+          "displayTitle": "TOF-01 · Campaign · Launch · 1.91x1",
+          "width": 1440,
+          "height": 754
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-01-1x1.webp",
+          "kind": "image",
+          "displayTitle": "TOF-01 · Campaign · Launch · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-01-4x5.webp",
+          "kind": "image",
+          "displayTitle": "TOF-01 · Campaign · Launch · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-01-9x16.webp",
+          "kind": "image",
+          "displayTitle": "TOF-01 · Campaign · Launch · 9x16",
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-02-1-91x1.webp",
+          "kind": "image",
+          "displayTitle": "TOF-02 · Campaign · Bold Black Friday · 1.91x1",
+          "width": 1440,
+          "height": 754
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-02-1x1.webp",
+          "kind": "image",
+          "displayTitle": "TOF-02 · Campaign · Bold Black Friday · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-02-4x5.webp",
+          "kind": "image",
+          "displayTitle": "TOF-02 · Campaign · Bold Black Friday · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-02-9x16.webp",
+          "kind": "image",
+          "displayTitle": "TOF-02 · Campaign · Bold Black Friday · 9x16",
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-03-1x1.webp",
+          "kind": "image",
+          "displayTitle": "TOF-03 · Laundry · Romeo selection · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-03-4x5.webp",
+          "kind": "image",
+          "displayTitle": "TOF-03 · Laundry · Romeo selection · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-03-9x16.webp",
+          "kind": "image",
+          "displayTitle": "TOF-03 · Laundry · Romeo selection · 9x16",
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-04-1x1.webp",
+          "kind": "image",
+          "displayTitle": "TOF-04 · Gifts · Product collection · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-04-4x5.webp",
+          "kind": "image",
+          "displayTitle": "TOF-04 · Gifts · Product collection · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/tof-04-9x16.webp",
+          "kind": "image",
+          "displayTitle": "TOF-04 · Gifts · Product collection · 9x16",
+          "width": 1080,
+          "height": 1920
+        }
+      ]
+    },
+    {
+      "label": "Laundry and bestsellers",
+      "purpose": "Middle funnel",
+      "copy": "Move from the sale message to familiar products and collections shoppers can compare.",
+      "assets": [
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/mof-01-1x1.webp",
+          "kind": "image",
+          "displayTitle": "MOF-01 · Laundry · Basket collection · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/mof-02-1x1.webp",
+          "kind": "image",
+          "displayTitle": "MOF-02 · Laundry · Home photograph · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/mof-04-1x1.webp",
+          "kind": "image",
+          "displayTitle": "MOF-04 · Mixed products · Bestsellers · 1x1",
+          "width": 1440,
+          "height": 1440
+        }
+      ]
+    },
+    {
+      "label": "Individual offers and sets",
+      "purpose": "Bottom funnel",
+      "copy": "Show the product, pack or set clearly and give the offer room to read.",
+      "assets": [
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-02-1x1.webp",
+          "kind": "image",
+          "displayTitle": "BOF-02 · Kitchen degreaser · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-02-4x5.webp",
+          "kind": "image",
+          "displayTitle": "BOF-02 · Kitchen degreaser · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-02-9x16.webp",
+          "kind": "image",
+          "displayTitle": "BOF-02 · Kitchen degreaser · 9x16",
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-03-1x1.webp",
+          "kind": "image",
+          "displayTitle": "BOF-03 · Lemon dish detergent · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-03-4x5.webp",
+          "kind": "image",
+          "displayTitle": "BOF-03 · Lemon dish detergent · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-03-9x16.webp",
+          "kind": "image",
+          "displayTitle": "BOF-03 · Lemon dish detergent · 9x16",
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-04-1x1.webp",
+          "kind": "image",
+          "displayTitle": "BOF-04 · Shower gel · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-04-4x5.webp",
+          "kind": "image",
+          "displayTitle": "BOF-04 · Shower gel · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-04-9x16.webp",
+          "kind": "image",
+          "displayTitle": "BOF-04 · Shower gel · 9x16",
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-05-1x1.webp",
+          "kind": "image",
+          "displayTitle": "BOF-05 · Laundry pair · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-05-4x5.webp",
+          "kind": "image",
+          "displayTitle": "BOF-05 · Laundry pair · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-05-9x16.webp",
+          "kind": "image",
+          "displayTitle": "BOF-05 · Laundry pair · 9x16",
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-06-1x1.webp",
+          "kind": "image",
+          "displayTitle": "BOF-06 · Eight-product personal-care set · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-06-4x5.webp",
+          "kind": "image",
+          "displayTitle": "BOF-06 · Eight-product personal-care set · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-06-9x16.webp",
+          "kind": "image",
+          "displayTitle": "BOF-06 · Eight-product personal-care set · 9x16",
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-07-1x1.webp",
+          "kind": "image",
+          "displayTitle": "BOF-07 · Natural soap 5+1 · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-07-4x5.webp",
+          "kind": "image",
+          "displayTitle": "BOF-07 · Natural soap 5+1 · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-07-9x16.webp",
+          "kind": "image",
+          "displayTitle": "BOF-07 · Natural soap 5+1 · 9x16",
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-08-1x1.webp",
+          "kind": "image",
+          "displayTitle": "BOF-08 · Hair and body care trio · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-08-4x5.webp",
+          "kind": "image",
+          "displayTitle": "BOF-08 · Hair and body care trio · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-08-9x16.webp",
+          "kind": "image",
+          "displayTitle": "BOF-08 · Hair and body care trio · 9x16",
+          "width": 1080,
+          "height": 1920
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-09-1x1.webp",
+          "kind": "image",
+          "displayTitle": "BOF-09 · Goat-milk soap · 1x1",
+          "width": 1440,
+          "height": 1440
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-09-4x5.webp",
+          "kind": "image",
+          "displayTitle": "BOF-09 · Goat-milk soap · 4x5",
+          "width": 1440,
+          "height": 1800
+        },
+        {
+          "src": "assets/portfolio/herbaris/black-friday-2026/bof-09-9x16.webp",
+          "kind": "image",
+          "displayTitle": "BOF-09 · Goat-milk soap · 9x16",
+          "width": 1080,
+          "height": 1920
+        }
+      ]
+    }
+  ],
+  "emails": {
+    "creative": [
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-launch-1.webp",
+        "displayTitle": "Am deschis",
+        "height": 7632,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-launch-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-launch-2.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-launch-3.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-launch-4.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-launch-5.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1232
+          }
+        ],
+        "motion": [
+          [
+            "launch-hero.gif",
+            321,
+            600,
+            698,
+            0
+          ]
+        ]
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-essentials-1.webp",
+        "displayTitle": "Seturi pentru casă",
+        "height": 7749,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-essentials-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-essentials-2.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-essentials-3.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-essentials-4.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-essentials-5.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1349
+          }
+        ],
+        "motion": []
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-recently-viewed-1.webp",
+        "displayTitle": "Ăsta e semnul tău",
+        "height": 3429,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-recently-viewed-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-recently-viewed-2.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-recently-viewed-3.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 229
+          }
+        ],
+        "motion": [
+          [
+            "announcement.gif",
+            0,
+            600,
+            96,
+            0
+          ],
+          [
+            "gift-progress.gif",
+            2028,
+            540,
+            300,
+            30
+          ]
+        ]
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-romeo-1.webp",
+        "displayTitle": "Alese de Romeo",
+        "height": 8359,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-romeo-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-romeo-2.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-romeo-3.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-romeo-4.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-romeo-5.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-romeo-6.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 359
+          }
+        ],
+        "motion": [
+          [
+            "announcement.gif",
+            0,
+            600,
+            96,
+            0
+          ]
+        ]
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-laundry-1.webp",
+        "displayTitle": "De ce e altfel decât săpunul din supermarket",
+        "height": 5141,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-laundry-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-laundry-2.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-laundry-3.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-laundry-4.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 341
+          }
+        ],
+        "motion": [
+          [
+            "announcement.gif",
+            0,
+            600,
+            96,
+            0
+          ]
+        ]
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-care-1.webp",
+        "displayTitle": "Se vând ca pâinea caldă",
+        "height": 7314,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-care-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-care-2.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-care-3.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-care-4.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1600
+          },
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-care-5.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 914
+          }
+        ],
+        "motion": []
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-welcome-1.webp",
+        "displayTitle": "Uite ce ai deblocat",
+        "height": 1243,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-welcome-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 1243
+          }
+        ],
+        "motion": [
+          [
+            "welcome-scratch.gif",
+            321,
+            536,
+            332,
+            32
+          ]
+        ]
+      }
+    ],
+    "letters": [
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-early-note-1.webp",
+        "displayTitle": "Early access announcement",
+        "height": 893,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-early-note-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 893
+          }
+        ],
+        "motion": []
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-midnight-note-1.webp",
+        "displayTitle": "Before midnight",
+        "height": 973,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-midnight-note-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 973
+          }
+        ],
+        "motion": [
+          [
+            "midnight.gif",
+            261,
+            536,
+            268,
+            32
+          ]
+        ]
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-early-access-1.webp",
+        "displayTitle": "Early access link",
+        "height": 976,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-early-access-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 976
+          }
+        ],
+        "motion": []
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-buyer-note-1.webp",
+        "displayTitle": "A note for customers who bought",
+        "height": 981,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-buyer-note-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 981
+          }
+        ],
+        "motion": []
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-subscriber-note-1.webp",
+        "displayTitle": "A note for subscribers who hadn’t bought",
+        "height": 981,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-subscriber-note-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 981
+          }
+        ],
+        "motion": []
+      },
+      {
+        "src": "assets/portfolio/herbaris/black-friday-2026/mail-letter-1.webp",
+        "displayTitle": "Black Friday letter",
+        "height": 768,
+        "width": 600,
+        "slices": [
+          {
+            "src": "assets/portfolio/herbaris/black-friday-2026/mail-letter-1.webp",
+            "kind": "image",
+            "displayTitle": "",
+            "width": 600,
+            "height": 768
+          }
+        ],
+        "motion": []
+      }
+    ]
+  },
+  "pages": [
+    {
+      "key": "closed",
+      "label": "Closed storefront",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-closed-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Closed storefront · desktop",
+        "width": 1440,
+        "height": 935,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-closed-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Closed storefront · mobile",
+        "width": 390,
+        "height": 879,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "countdown",
+      "label": "Countdown bar",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-countdown-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Countdown bar · desktop",
+        "width": 1440,
+        "height": 569,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-countdown-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Countdown bar · mobile",
+        "width": 390,
+        "height": 610,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "gift-tab",
+      "label": "Collection gift tab",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-gift-tab-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Collection gift tab · desktop",
+        "width": 1440,
+        "height": 931,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-gift-tab-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Collection gift tab · mobile",
+        "width": 390,
+        "height": 984,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "gift-list",
+      "label": "Product page gift list",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-gift-list-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Product page gift list · desktop",
+        "width": 576,
+        "height": 700,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-gift-list-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Product page gift list · mobile",
+        "width": 390,
+        "height": 781,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "cart",
+      "label": "Gift selection in the cart",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-cart-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Gift selection in the cart · desktop",
+        "width": 1440,
+        "height": 1065,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-cart-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Gift selection in the cart · mobile",
+        "width": 390,
+        "height": 953,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "pdp-early",
+      "label": "Product page · early access",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-pdp-early-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Product page · early access · desktop",
+        "width": 759,
+        "height": 1055,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-pdp-early-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Product page · early access · mobile",
+        "width": 390,
+        "height": 2560,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "pdp-public",
+      "label": "Product page · public offer",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-pdp-public-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Product page · public offer · desktop",
+        "width": 759,
+        "height": 1055,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-pdp-public-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Product page · public offer · mobile",
+        "width": 390,
+        "height": 2560,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "hero",
+      "label": "Homepage · five everyday favourites",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-hero-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Homepage · five everyday favourites · desktop",
+        "width": 1920,
+        "height": 527,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-hero-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Homepage · five everyday favourites · mobile",
+        "width": 390,
+        "height": 534,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "laundry-banner",
+      "label": "Homepage · laundry",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-laundry-banner-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Homepage · laundry · desktop",
+        "width": 1440,
+        "height": 650,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-laundry-banner-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Homepage · laundry · mobile",
+        "width": 390,
+        "height": 600,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "cleaning-banner",
+      "label": "Homepage · home cleaning",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-cleaning-banner-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Homepage · home cleaning · desktop",
+        "width": 1440,
+        "height": 650,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-cleaning-banner-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Homepage · home cleaning · mobile",
+        "width": 390,
+        "height": 600,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "care-banner",
+      "label": "Homepage · cosmetics",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-care-banner-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Homepage · cosmetics · desktop",
+        "width": 1440,
+        "height": 650,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-care-banner-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Homepage · cosmetics · mobile",
+        "width": 390,
+        "height": 600,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "sets-banner",
+      "label": "Kits page hero",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-sets-banner-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Kits page hero · desktop",
+        "width": 1440,
+        "height": 527,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-sets-banner-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Kits page hero · mobile",
+        "width": 390,
+        "height": 522,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "split-signup",
+      "label": "Pop-up A · sign-up",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-split-signup-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up A · sign-up · desktop",
+        "width": 1440,
+        "height": 900,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-split-signup-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up A · sign-up · mobile",
+        "width": 390,
+        "height": 844,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "split-confirmation",
+      "label": "Pop-up A · confirmation",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-split-confirmation-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up A · confirmation · desktop",
+        "width": 720,
+        "height": 450,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-split-confirmation-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up A · confirmation · mobile",
+        "width": 390,
+        "height": 844,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "quiz-start",
+      "label": "Pop-up B · open",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-quiz-start-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up B · open · desktop",
+        "width": 1440,
+        "height": 900,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-quiz-start-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up B · open · mobile",
+        "width": 390,
+        "height": 844,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "quiz-choice",
+      "label": "Pop-up B · choose",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-quiz-choice-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up B · choose · desktop",
+        "width": 720,
+        "height": 450,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-quiz-choice-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up B · choose · mobile",
+        "width": 390,
+        "height": 844,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "quiz-scratch",
+      "label": "Pop-up B · scratch",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-quiz-scratch-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up B · scratch · desktop",
+        "width": 720,
+        "height": 450,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-quiz-scratch-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up B · scratch · mobile",
+        "width": 390,
+        "height": 844,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "quiz-confirmation",
+      "label": "Pop-up B · confirmation",
+      "desktop": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-quiz-confirmation-desktop.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up B · confirmation · desktop",
+        "width": 720,
+        "height": 450,
+        "role": "desktop-screen"
+      },
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-quiz-confirmation-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Pop-up B · confirmation · mobile",
+        "width": 390,
+        "height": 844,
+        "role": "mobile-screen"
+      }
+    },
+    {
+      "key": "menu",
+      "label": "Mobile navigation",
+      "mobile": {
+        "src": "assets/portfolio/herbaris/black-friday-2026/site-menu-mobile.webp",
+        "kind": "image",
+        "displayTitle": "Mobile navigation · mobile",
+        "width": 845,
+        "height": 3452,
+        "role": "mobile-screen"
+      }
+    }
+  ],
+  "stickers": {
+    "src": "assets/portfolio/herbaris/black-friday-2026/site-stickers.webp",
+    "kind": "image",
+    "displayTitle": "Final campaign sticker exports",
+    "width": 1920,
+    "height": 552
+  },
+  "videos": [
+    {
+      "src": "assets/portfolio/herbaris/black-friday-2026/video-1.mp4",
+      "motionPoster": "assets/portfolio/herbaris/black-friday-2026/video-1.webp",
+      "kind": "video",
+      "displayTitle": "gifts 20-27 Nov",
+      "alt": "gifts 20-27 Nov",
+      "width": 540,
+      "height": 960
+    },
+    {
+      "src": "assets/portfolio/herbaris/black-friday-2026/video-2.mp4",
+      "motionPoster": "assets/portfolio/herbaris/black-friday-2026/video-2.webp",
+      "kind": "video",
+      "displayTitle": "gifts 20-27 Nov",
+      "alt": "gifts 20-27 Nov",
+      "width": 540,
+      "height": 960
+    },
+    {
+      "src": "assets/portfolio/herbaris/black-friday-2026/video-3.mp4",
+      "motionPoster": "assets/portfolio/herbaris/black-friday-2026/video-3.webp",
+      "kind": "video",
+      "displayTitle": "early 1-19 Nov",
+      "alt": "early 1-19 Nov",
+      "width": 540,
+      "height": 960
+    },
+    {
+      "src": "assets/portfolio/herbaris/black-friday-2026/video-4.mp4",
+      "motionPoster": "assets/portfolio/herbaris/black-friday-2026/video-4.webp",
+      "kind": "video",
+      "displayTitle": "last days 20-27 Nov",
+      "alt": "last days 20-27 Nov",
+      "width": 540,
+      "height": 960
+    }
+  ]
+}

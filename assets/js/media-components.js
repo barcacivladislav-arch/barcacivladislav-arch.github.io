@@ -468,7 +468,24 @@
           const cue = document.createElement("span");
           cue.className = "website-screen__cue";
           cue.textContent = "Scroll page ↓";
-          const media = createMedia(asset, index, root, { lightbox: false });
+          const media = asset.slices?.length
+            ? document.createElement("div")
+            : createMedia(asset, index, root, { lightbox: false });
+          if (asset.slices?.length) {
+            media.className = "website-screen__slices";
+            media.setAttribute("role", "img");
+            media.setAttribute("aria-label", displayTitle(asset, index, family));
+            asset.slices.forEach((slice) => {
+              const img = document.createElement("img");
+              img.src = root + slice.src;
+              img.alt = "";
+              img.width = slice.width;
+              img.height = slice.height;
+              img.loading = "lazy";
+              img.decoding = "async";
+              media.append(img);
+            });
+          }
           screen.append(label, media, cue);
           screen.addEventListener("scroll", () => {
             const max = screen.scrollHeight - screen.clientHeight;

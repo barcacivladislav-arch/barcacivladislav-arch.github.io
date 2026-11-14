@@ -1,0 +1,60 @@
+.klint-campaign-index {
+  margin-block: var(--space-panel);
+  border-block: var(--rule);
+  padding-block: 20px 24px;
+}
+.klint-campaign-index__grid {
+  display: grid;
+  grid-template-columns: 1.65fr repeat(3, minmax(0, 1fr));
+  gap: 12px 20px;
+  margin-top: 20px;
+}
+.klint-campaign-index__grid a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+}
+.klint-campaign-index__grid :is(picture, img) {
+  grid-column: 1 / -1;
+  display: block;
+  width: 100%;
+}
+.klint-campaign-index__grid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #f3f3f3;
+}
+.klint-campaign-index__grid a:first-child img { aspect-ratio: 1.65; }
+.klint-campaign-index__grid a[href="#spring-sale"] img { object-fit: cover; object-position: center 22%; }
+.klint-campaign-index__grid a > span:last-child { align-self: end; }
+.klint-campaign-index__grid a > span { line-height: 1.35; }
+.klint-campaign-index__grid a span span, .klint-brand-sequence span { display: block; font-size: .875rem; }
+.klint-campaign-index__grid strong { display: block; font: 400 var(--subheading) / 1.1 var(--font-serif); }
+.klint-campaign-index__grid a:is(:hover, :focus-visible) strong { text-decoration: underline; text-underline-offset: .16em; }
+.klint-campaign { border-top: var(--rule); }
+.klint-brand-sequence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-block: var(--space-panel);
+}
+.klint-brand-sequence > div { border-top: var(--rule-muted); padding-top: 16px; }
+.klint-brand-sequence h3 { margin-block: 12px 8px; }
+.klint-campaign__module { margin-block: var(--space-panel) 0; scroll-margin-top: var(--project-contents-offset, 90px); }
+.klint-campaign__module > p { margin-block: 12px 24px; max-width: 68ch; }
+.klint-campaign__module > h3 + div { margin-top: 20px; }
+.klint-campaign__module > .artwork-motion-control { margin: 0 0 20px; }
+.website-screen__slices img, .klint-email-art img { display: block; width: 100%; height: auto; max-height: none; }
+.klint-email-art { position: relative; max-width: 600px; margin-inline: auto; }
+.klint-email-art .klint-email-art__motion { position: absolute; inset: 0 auto auto 0; }
+.klint-email button { min-height: 44px; padding-inline: 12px; margin-block: 8px; }
+@media (max-width: 780px) {
+  .klint-campaign-index__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; }
+  .klint-campaign-index__grid a:first-child img { aspect-ratio: 1; }
+}
+@media (max-width: 600px) {
+  .klint-brand-sequence { grid-template-columns: 1fr; }
+}
